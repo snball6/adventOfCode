@@ -15,13 +15,22 @@ describe("day1", () => {
         });
     
         it("should calculate Part1 answer", () => {
-            //PART 1 SOLUTION
             // expect(getTotalFuel(input)).toBe("ANSWER");
             expect(getTotalFuel(input)).toBe(3372695);
         });
     });
 
     describe("Part 2", () => {
+        it("should recurse fuel requirements", () => {
+            expect(fuelByMassRecursive(12)).toBe(2);
+            expect(fuelByMassRecursive(1969)).toBe(966);
+            expect(fuelByMassRecursive(100756)).toBe(50346);
+        });
+
+        it("should calculate Part2 answer", () => {
+            // expect(getTotalFuelRecursive(input)).toBe("ANSWER");
+            expect(getTotalFuelRecursive(input)).toBe(5056172);
+        });
     });
 
 
