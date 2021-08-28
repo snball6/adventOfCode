@@ -39,7 +39,10 @@ describe("day1", () => {
     });
 
     describe("Part 2", () => {
-
+        it("should find noun and verb to produce output", ()=> {
+            // expect(findNounAndVerb(19690720, input.slice())).toEqual("Answer");
+            expect(findNounAndVerb(19690720, input.slice())).toEqual(5379);
+        });
     });
 
 
