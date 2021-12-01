@@ -1,4 +1,4 @@
-describe("day1", () => {
+describe("day2", () => {
 
     describe("Part 1", () => {
         it("should handle addition op code", () => {
