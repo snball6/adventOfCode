@@ -1,4 +1,4 @@
-describe("day2", () => {
+describe("day3", () => {
 
     describe("Part 1", () => {
         it("Should get power consumption_Sample Data", () => {
@@ -49,7 +49,7 @@ describe("day2", () => {
 
         it("Should get life support_Puzzle Input", () => {
             let actual = getLifeSupport(puzzleInputReport);
-            expect(actual).toBe(230);
+            expect(actual).toBe(4636702);
         });
     });
 
