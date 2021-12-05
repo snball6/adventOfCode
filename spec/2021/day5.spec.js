@@ -135,7 +135,6 @@ describe("day5", () => {
             ]
             let dictionary = buildDictionaryOfVents(vents);
 
-            console.log(dictionary);
             expect(dictionary['0,9']).toEqual(1);
             expect(dictionary['1,9']).toEqual(1);
             expect(dictionary['2,9']).toEqual(1);
