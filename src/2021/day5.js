@@ -36,6 +36,47 @@ function buildDictionaryOfVents(input){
                     addOrUpdate(dictionary, x1 + ',' + j);
                 }
             }
+        } else {
+            //diagonal cases
+            if(isAscending(x1, x2)){
+                //if x ascending
+                if(isAscending(y1,y2)){
+                    console.log("here1");
+                    //if y also ascending
+                    for(let x = x1; x<=x2; x++){
+                        for(let y = y1; y<=y2; y++){
+                            addOrUpdate(dictionary, x + ',' + y);
+                        }
+                    }
+                } else {
+                    console.log("here2");
+                    // if y descending
+                    for(let x = x1; x<=x2; x++){
+                        for(let y = y1; y>=y2; y--){
+                            addOrUpdate(dictionary, x + ',' + y);
+                        }
+                    }
+                }
+            } else {
+                //if x descending
+                if(isAscending(y1,y2)){
+                    console.log("here3");
+                    //if y also ascending
+                    for(let x = x1; x>=x2; x--){
+                        for(let y = y1; y<=y2; y++){
+                            addOrUpdate(dictionary, x + ',' + y);
+                        }
+                    }
+                } else {
+                    console.log("here4");
+                    // if y descending
+                    for(let x = x1; x>=x2; x--){
+                        for(let y = y1; y>=y2; y--){
+                            addOrUpdate(dictionary, x + ',' + y);
+                        }
+                    }
+                }
+            }
         }
     }
     return dictionary;
@@ -44,6 +85,7 @@ function buildDictionaryOfVents(input){
 function getCountOf2OrGreaterOverlaps(input){
     let dictionary = buildDictionaryOfVents(input);
 
+    console.log(dictionary);
     let total = 0;
     for(point in dictionary){
         if(dictionary[point] >=2){

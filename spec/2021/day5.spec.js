@@ -66,7 +66,51 @@ describe("day5", () => {
     });
 
     describe("Part 2", () => {
+        it("Should build dictionary of vents_diagonal", () => {
+            let vents = [
+                {
+                    start: [1, 1],
+                    end: [3, 3]
+                },
+                {
+                    start: [9, 7],
+                    end: [7, 9]
+                },
+                {
+                    start: [9, 9],
+                    end: [7, 7]
+                },
+                {
+                    start: [10, 19],
+                    end: [12, 17]
+                }
+            ]
+            let dictionary = buildDictionaryOfVents(vents);
 
+            expect(dictionary['1,1']).toEqual(1);
+            expect(dictionary['2,2']).toEqual(1);
+            expect(dictionary['3,3']).toEqual(1);
+            expect(dictionary['9,7']).toEqual(2);
+            expect(dictionary['8,8']).toEqual(2);
+            expect(dictionary['7,9']).toEqual(2);
+            expect(dictionary['10,19']).toEqual(1);
+            expect(dictionary['11,18']).toEqual(1);
+            expect(dictionary['12,17']).toEqual(1);
+        });
+
+        it("Should count 2 or greater overlaps_sample input unfiltered", () => {
+
+            let actual = getCountOf2OrGreaterOverlaps(sampleInput);
+
+            expect(actual).toEqual(12);
+        });
+
+        // it("Should count 2 or greater overlaps_puzzle input unfiltered", () => {
+
+        //     let actual = getCountOf2OrGreaterOverlaps(puzzleInput);
+
+        //     expect(actual).toEqual(12);
+        // });
     });
 
     //input parsed and structured using column select
