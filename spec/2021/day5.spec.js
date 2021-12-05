@@ -66,6 +66,21 @@ describe("day5", () => {
     });
 
     describe("Part 2", () => {
+        it("Should build dictionary of vents_one diagonal", () => {
+            let vents = [
+                {
+                    start: [1, 1],
+                    end: [3, 3]
+                },
+            ]
+            let dictionary = buildDictionaryOfVents(vents);
+
+            expect(Object.keys(dictionary).length).toEqual(3);
+            expect(dictionary['1,1']).toEqual(1);
+            expect(dictionary['2,2']).toEqual(1);
+            expect(dictionary['3,3']).toEqual(1);
+        });
+
         it("Should build dictionary of vents_diagonal", () => {
             let vents = [
                 {
@@ -90,12 +105,60 @@ describe("day5", () => {
             expect(dictionary['1,1']).toEqual(1);
             expect(dictionary['2,2']).toEqual(1);
             expect(dictionary['3,3']).toEqual(1);
-            expect(dictionary['9,7']).toEqual(2);
+            
+            expect(dictionary['9,7']).toEqual(1);
             expect(dictionary['8,8']).toEqual(2);
-            expect(dictionary['7,9']).toEqual(2);
+            expect(dictionary['7,9']).toEqual(1);
+
             expect(dictionary['10,19']).toEqual(1);
             expect(dictionary['11,18']).toEqual(1);
             expect(dictionary['12,17']).toEqual(1);
+
+            expect(dictionary['9,9']).toEqual(1);
+            expect(dictionary['7,7']).toEqual(1);
+        });
+
+        it("Should build dictionary of vents_sample set debugging", () => {
+            let vents = [
+                {
+                    start: [0, 9],
+                    end: [5, 9]
+                },
+                {
+                    start: [8, 0],
+                    end: [0, 8]
+                },
+                {
+                    start: [9, 4],
+                    end: [3, 4]
+                }
+            ]
+            let dictionary = buildDictionaryOfVents(vents);
+
+            console.log(dictionary);
+            expect(dictionary['0,9']).toEqual(1);
+            expect(dictionary['1,9']).toEqual(1);
+            expect(dictionary['2,9']).toEqual(1);
+            expect(dictionary['3,9']).toEqual(1);
+            expect(dictionary['4,9']).toEqual(1);
+            expect(dictionary['5,9']).toEqual(1);
+
+            expect(dictionary['8,0']).toEqual(1);
+            expect(dictionary['7,1']).toEqual(1);
+            expect(dictionary['6,2']).toEqual(1);
+            expect(dictionary['5,3']).toEqual(1);
+            expect(dictionary['4,4']).toEqual(2);
+            expect(dictionary['3,5']).toEqual(1);
+            expect(dictionary['2,6']).toEqual(1);
+            expect(dictionary['1,7']).toEqual(1);
+            expect(dictionary['0,8']).toEqual(1);
+
+            expect(dictionary['9,4']).toEqual(1);
+            expect(dictionary['8,4']).toEqual(1);
+            expect(dictionary['7,4']).toEqual(1);
+            expect(dictionary['6,4']).toEqual(1);
+            expect(dictionary['5,4']).toEqual(1);
+            expect(dictionary['3,4']).toEqual(1);
         });
 
         it("Should count 2 or greater overlaps_sample input unfiltered", () => {
@@ -105,12 +168,12 @@ describe("day5", () => {
             expect(actual).toEqual(12);
         });
 
-        // it("Should count 2 or greater overlaps_puzzle input unfiltered", () => {
+        it("Should count 2 or greater overlaps_puzzle input unfiltered", () => {
 
-        //     let actual = getCountOf2OrGreaterOverlaps(puzzleInput);
+            let actual = getCountOf2OrGreaterOverlaps(puzzleInput);
 
-        //     expect(actual).toEqual(12);
-        // });
+            expect(actual).toEqual(22364);
+        });
     });
 
     //input parsed and structured using column select
