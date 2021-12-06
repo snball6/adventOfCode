@@ -62,7 +62,7 @@ describe("day6", () => {
 
         it("Should simulate lanternfish totals for the given number of days_puzzle input", () => {
             let fishCount = simulateLanternFish2_Aggregate(puzzleInput, 256);
-            expect(fishCount).toEqual(26984457539);
+            expect(fishCount).toEqual(1741362314973);
         });
     });
 
