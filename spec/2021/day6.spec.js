@@ -34,7 +34,15 @@ describe("day6", () => {
     });
 
     describe("Part 2", () => {
-       
+        it("Should simulate lanternfish totals for the given number of days_sample input", () => {
+            let actualFishes = simulateLanternFish(sampleInput, 256);
+            expect(actualFishes.length).toEqual(26984457539);
+        });
+
+        // it("Should simulate lanternfish totals for the given number of days_puzzle input", () => {
+        //     let actualFishes = simulateLanternFish(puzzleInput, 265);
+        //     expect(actualFishes.length).toEqual(26984457539);
+        // });
     });
 
     //input parsed and structured using column select
