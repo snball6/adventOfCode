@@ -1,0 +1,590 @@
+{
+    "owner_id": "1031380",
+    "event": "2021",
+    "members": {
+        "1108809": {
+            "completion_day_level": {
+                "1": {
+                    "1": {
+                        "get_star_ts": 1638583910
+                    },
+                    "2": {
+                        "get_star_ts": 1638584322
+                    }
+                },
+                "2": {
+                    "2": {
+                        "get_star_ts": 1638586544
+                    },
+                    "1": {
+                        "get_star_ts": 1638585499
+                    }
+                }
+            },
+            "name": "Scott Krumrei",
+            "last_star_ts": 1638586544,
+            "local_score": 23,
+            "stars": 4,
+            "global_score": 0,
+            "id": "1108809"
+        },
+        "1108620": {
+            "name": "Chris Hutchins",
+            "completion_day_level": {},
+            "local_score": 0,
+            "stars": 0,
+            "last_star_ts": "0",
+            "global_score": 0,
+            "id": "1108620"
+        },
+        "1632578": {
+            "global_score": 0,
+            "id": "1632578",
+            "completion_day_level": {
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638486163
+                    },
+                    "2": {
+                        "get_star_ts": 1638486997
+                    }
+                },
+                "1": {
+                    "1": {
+                        "get_star_ts": 1638408568
+                    },
+                    "2": {
+                        "get_star_ts": 1638410800
+                    }
+                }
+            },
+            "name": "JD",
+            "local_score": 49,
+            "stars": 4,
+            "last_star_ts": 1638486997
+        },
+        "1536781": {
+            "global_score": 0,
+            "id": "1536781",
+            "completion_day_level": {
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638459485
+                    },
+                    "2": {
+                        "get_star_ts": 1638462660
+                    }
+                },
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638378029
+                    },
+                    "1": {
+                        "get_star_ts": 1638372149
+                    }
+                }
+            },
+            "name": "MitchZo",
+            "last_star_ts": 1638462660,
+            "stars": 4,
+            "local_score": 65
+        },
+        "1624251": {
+            "name": "tone-segura",
+            "completion_day_level": {
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638484539
+                    },
+                    "1": {
+                        "get_star_ts": 1638467656
+                    }
+                },
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638485186
+                    },
+                    "2": {
+                        "get_star_ts": 1638485400
+                    }
+                },
+                "3": {
+                    "1": {
+                        "get_star_ts": 1638509999
+                    }
+                }
+            },
+            "last_star_ts": 1638509999,
+            "stars": 5,
+            "local_score": 60,
+            "global_score": 0,
+            "id": "1624251"
+        },
+        "1624263": {
+            "global_score": 0,
+            "id": "1624263",
+            "name": "wwestfall91",
+            "completion_day_level": {
+                "2": {
+                    "2": {
+                        "get_star_ts": 1638458153
+                    },
+                    "1": {
+                        "get_star_ts": 1638457397
+                    }
+                },
+                "3": {
+                    "1": {
+                        "get_star_ts": 1638540594
+                    },
+                    "2": {
+                        "get_star_ts": 1638589861
+                    }
+                },
+                "4": {
+                    "2": {
+                        "get_star_ts": 1638601095
+                    },
+                    "1": {
+                        "get_star_ts": 1638600184
+                    }
+                },
+                "5": {
+                    "1": {
+                        "get_star_ts": 1638769705
+                    }
+                },
+                "6": {
+                    "1": {
+                        "get_star_ts": 1638824102
+                    }
+                },
+                "1": {
+                    "1": {
+                        "get_star_ts": 1638379104
+                    },
+                    "2": {
+                        "get_star_ts": 1638380859
+                    }
+                }
+            },
+            "last_star_ts": 1638824102,
+            "local_score": 156,
+            "stars": 10
+        },
+        "1647175": {
+            "id": "1647175",
+            "global_score": 0,
+            "last_star_ts": 1638684019,
+            "stars": 3,
+            "local_score": 38,
+            "name": "Matthew Scholand",
+            "completion_day_level": {
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638684019
+                    }
+                },
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638377963
+                    },
+                    "1": {
+                        "get_star_ts": 1638377636
+                    }
+                }
+            }
+        },
+        "1109424": {
+            "completion_day_level": {},
+            "name": "Lisa Ho",
+            "local_score": 0,
+            "stars": 0,
+            "last_star_ts": "0",
+            "global_score": 0,
+            "id": "1109424"
+        },
+        "1032152": {
+            "last_star_ts": 1638822590,
+            "local_score": 104,
+            "stars": 8,
+            "completion_day_level": {
+                "4": {
+                    "2": {
+                        "get_star_ts": 1638822590
+                    },
+                    "1": {
+                        "get_star_ts": 1638821862
+                    }
+                },
+                "3": {
+                    "2": {
+                        "get_star_ts": 1638734524
+                    },
+                    "1": {
+                        "get_star_ts": 1638539275
+                    }
+                },
+                "2": {
+                    "2": {
+                        "get_star_ts": 1638466033
+                    },
+                    "1": {
+                        "get_star_ts": 1638464807
+                    }
+                },
+                "1": {
+                    "1": {
+                        "get_star_ts": 1638393039
+                    },
+                    "2": {
+                        "get_star_ts": 1638393565
+                    }
+                }
+            },
+            "name": "BurnsAndy",
+            "id": "1032152",
+            "global_score": 0
+        },
+        "532224": {
+            "last_star_ts": 1638675196,
+            "stars": 7,
+            "local_score": 76,
+            "name": "UncleTed",
+            "completion_day_level": {
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638507128
+                    },
+                    "1": {
+                        "get_star_ts": 1638450048
+                    }
+                },
+                "4": {
+                    "1": {
+                        "get_star_ts": 1638675196
+                    }
+                },
+                "2": {
+                    "2": {
+                        "get_star_ts": 1638500282
+                    },
+                    "1": {
+                        "get_star_ts": 1638500045
+                    }
+                },
+                "3": {
+                    "2": {
+                        "get_star_ts": 1638577063
+                    },
+                    "1": {
+                        "get_star_ts": 1638572541
+                    }
+                }
+            },
+            "id": "532224",
+            "global_score": 0
+        },
+        "1666139": {
+            "stars": 0,
+            "local_score": 0,
+            "last_star_ts": "0",
+            "completion_day_level": {},
+            "name": null,
+            "id": "1666139",
+            "global_score": 0
+        },
+        "1727519": {
+            "last_star_ts": 1638811208,
+            "local_score": 164,
+            "stars": 12,
+            "completion_day_level": {
+                "3": {
+                    "1": {
+                        "get_star_ts": 1638512313
+                    },
+                    "2": {
+                        "get_star_ts": 1638513824
+                    }
+                },
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638496234
+                    },
+                    "2": {
+                        "get_star_ts": 1638497354
+                    }
+                },
+                "4": {
+                    "2": {
+                        "get_star_ts": 1638681356
+                    },
+                    "1": {
+                        "get_star_ts": 1638681139
+                    }
+                },
+                "1": {
+                    "1": {
+                        "get_star_ts": 1638454097
+                    },
+                    "2": {
+                        "get_star_ts": 1638454522
+                    }
+                },
+                "6": {
+                    "2": {
+                        "get_star_ts": 1638811208
+                    },
+                    "1": {
+                        "get_star_ts": 1638811172
+                    }
+                },
+                "5": {
+                    "2": {
+                        "get_star_ts": 1638762771
+                    },
+                    "1": {
+                        "get_star_ts": 1638761056
+                    }
+                }
+            },
+            "name": "Murtuza Boxwala",
+            "id": "1727519",
+            "global_score": 0
+        },
+        "1221136": {
+            "completion_day_level": {
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638411032
+                    },
+                    "1": {
+                        "get_star_ts": 1638410302
+                    }
+                },
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638498901
+                    },
+                    "2": {
+                        "get_star_ts": 1638499454
+                    }
+                },
+                "3": {
+                    "1": {
+                        "get_star_ts": 1638589885
+                    },
+                    "2": {
+                        "get_star_ts": 1638647947
+                    }
+                }
+            },
+            "name": "George Lund",
+            "stars": 6,
+            "local_score": 66,
+            "last_star_ts": 1638647947,
+            "global_score": 0,
+            "id": "1221136"
+        },
+        "1236060": {
+            "name": "Giovanni Sturla",
+            "completion_day_level": {},
+            "last_star_ts": "0",
+            "stars": 0,
+            "local_score": 0,
+            "global_score": 0,
+            "id": "1236060"
+        },
+        "1031380": {
+            "global_score": 0,
+            "id": "1031380",
+            "name": "deeplusplus",
+            "completion_day_level": {
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638572067
+                    },
+                    "1": {
+                        "get_star_ts": 1638535886
+                    }
+                },
+                "4": {
+                    "1": {
+                        "get_star_ts": 1638651934
+                    },
+                    "2": {
+                        "get_star_ts": 1638652170
+                    }
+                },
+                "3": {
+                    "1": {
+                        "get_star_ts": 1638575430
+                    }
+                },
+                "2": {
+                    "2": {
+                        "get_star_ts": 1638573110
+                    },
+                    "1": {
+                        "get_star_ts": 1638572713
+                    }
+                }
+            },
+            "last_star_ts": 1638652170,
+            "local_score": 68,
+            "stars": 7
+        },
+        "1076332": {
+            "local_score": 78,
+            "stars": 6,
+            "last_star_ts": 1638754849,
+            "name": "Kealy Williams",
+            "completion_day_level": {
+                "3": {
+                    "1": {
+                        "get_star_ts": 1638746254
+                    }
+                },
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638459521
+                    }
+                },
+                "4": {
+                    "2": {
+                        "get_star_ts": 1638754849
+                    },
+                    "1": {
+                        "get_star_ts": 1638754015
+                    }
+                },
+                "1": {
+                    "1": {
+                        "get_star_ts": 1638379746
+                    },
+                    "2": {
+                        "get_star_ts": 1638380011
+                    }
+                }
+            },
+            "id": "1076332",
+            "global_score": 0
+        },
+        "1105834": {
+            "id": "1105834",
+            "global_score": 0,
+            "local_score": 184,
+            "stars": 12,
+            "last_star_ts": 1638792889,
+            "name": "Sarah Ball",
+            "completion_day_level": {
+                "6": {
+                    "2": {
+                        "get_star_ts": 1638792889
+                    },
+                    "1": {
+                        "get_star_ts": 1638791299
+                    }
+                },
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638361995
+                    },
+                    "1": {
+                        "get_star_ts": 1638361174
+                    }
+                },
+                "5": {
+                    "2": {
+                        "get_star_ts": 1638708930
+                    },
+                    "1": {
+                        "get_star_ts": 1638705948
+                    }
+                },
+                "3": {
+                    "1": {
+                        "get_star_ts": 1638532084
+                    },
+                    "2": {
+                        "get_star_ts": 1638533821
+                    }
+                },
+                "2": {
+                    "1": {
+                        "get_star_ts": 1638530779
+                    },
+                    "2": {
+                        "get_star_ts": 1638531040
+                    }
+                },
+                "4": {
+                    "1": {
+                        "get_star_ts": 1638632343
+                    },
+                    "2": {
+                        "get_star_ts": 1638633235
+                    }
+                }
+            }
+        },
+        "1689898": {
+            "completion_day_level": {
+                "2": {
+                    "2": {
+                        "get_star_ts": 1638426677
+                    },
+                    "1": {
+                        "get_star_ts": 1638425832
+                    }
+                },
+                "3": {
+                    "2": {
+                        "get_star_ts": 1638513637
+                    },
+                    "1": {
+                        "get_star_ts": 1638510276
+                    }
+                },
+                "4": {
+                    "1": {
+                        "get_star_ts": 1638606808
+                    },
+                    "2": {
+                        "get_star_ts": 1638607920
+                    }
+                },
+                "5": {
+                    "1": {
+                        "get_star_ts": 1638687431
+                    },
+                    "2": {
+                        "get_star_ts": 1638689309
+                    }
+                },
+                "1": {
+                    "2": {
+                        "get_star_ts": 1638416970
+                    },
+                    "1": {
+                        "get_star_ts": 1638415710
+                    }
+                },
+                "6": {
+                    "2": {
+                        "get_star_ts": 1638770370
+                    },
+                    "1": {
+                        "get_star_ts": 1638769139
+                    }
+                }
+            },
+            "name": "Peter McLarnan",
+            "local_score": 197,
+            "stars": 12,
+            "last_star_ts": 1638770370,
+            "global_score": 0,
+            "id": "1689898"
+        }
+    }
+}
