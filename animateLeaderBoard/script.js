@@ -39,6 +39,7 @@ let countdown = setInterval(function () {
             let elementToUpdate = parentRowElement[0].children[dateToUpdate-1]; //index off by one
             elementToUpdate.parentNode.replaceChild(linkedSingleDigitATag, elementToUpdate);
 
+            let memberRows = document.getElementsByClassName(mem-row);
             //update class styling of stars
             
         }
