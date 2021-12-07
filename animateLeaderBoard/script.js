@@ -15,7 +15,7 @@
 //     }
 // }; 
 let countDownTime = new Date('December 1, 2021 01:00:00');
-let countDownStop = new Date('December 8, 2021 01:00:00')
+let countDownStop = new Date('December 25, 2021 01:00:00')
 
 let dateChange = false;
 let countdown = setInterval(function () {
@@ -31,20 +31,35 @@ let countdown = setInterval(function () {
             //useful link: https://www.javascripttutorial.net/dom/manipulating/replace-a-dom-element/
 
 
-            // let dateToUpdate = countDownTime.getDate();
-            // let linkedSingleDigitATag = document.createElement("a");
-            // linkedSingleDigitATag.href = "http://google.com";
-            // linkedSingleDigitATag.innerText = dateToUpdate;
-            // let parentRowElement = document.getElementsByClassName("privboard-days");
-            // let elementToUpdate = parentRowElement[0].children[dateToUpdate-1]; //index off by one
-            // parentRowElement.parentNode.replaceChild(linkedSingleDigitATag, elementToUpdate);
+            let dateToUpdate = countDownTime.getDate();
+
+            //Update links of numbers
+            let linkedSingleDigitATag = createDayATag(dateToUpdate)
+            let parentRowElement = document.getElementsByClassName("privboard-days");
+            let elementToUpdate = parentRowElement[0].children[dateToUpdate-1]; //index off by one
+            elementToUpdate.parentNode.replaceChild(linkedSingleDigitATag, elementToUpdate);
+
+            //update class styling of stars
+            
         }
     }
 }, 10);
 
 function customDateFormat(date) {// because of stupid 0 indexed months
     return date.getFullYear() + "." + (date.getMonth() + 1).toString().padStart(2, '0') + "." + date.getDate().toString().padStart(2, '0') + " " + date.getHours().toString().padStart(2, '0') + ":" + (date.getMinutes().toString().padStart(2, '0'));
+}
 
+function createDayATag(dayNumber){
+    let linkedSingleDigitATag = document.createElement("a");
+    linkedSingleDigitATag.href = "https://adventofcode.com/2021/day/"+dayNumber;
+    if(dayNumber<10){
+        linkedSingleDigitATag.innerText = dayNumber;
+    } else {
+        let dayDigits = dayNumber.toString().split('');
+        const lineBreak = document.createElement('br');
+        linkedSingleDigitATag.innerHTML = dayDigits[0] + '<br>' + dayDigits[1];
+    }
+    return linkedSingleDigitATag
 }
 
 /**
