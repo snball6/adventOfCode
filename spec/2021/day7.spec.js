@@ -2,36 +2,55 @@ describe("day7", () => {
 
     describe("Part 1", () => {
         it("Should calculate cost to align_single crabs", () => {
-            expect(moveCrab(16,2)).toEqual(14);
-            expect(moveCrab(1,2)).toEqual(1);
-            expect(moveCrab(2,2)).toEqual(0);
-            expect(moveCrab(0,2)).toEqual(2);
-            expect(moveCrab(4,2)).toEqual(2);
-            expect(moveCrab(2,2)).toEqual(0);
-            expect(moveCrab(7,2)).toEqual(5);
-            expect(moveCrab(1,2)).toEqual(1);
-            expect(moveCrab(2,2)).toEqual(0);
-            expect(moveCrab(14,2)).toEqual(12);
+            expect(moveCrab_part1(16,2)).toEqual(14);
+            expect(moveCrab_part1(1,2)).toEqual(1);
+            expect(moveCrab_part1(2,2)).toEqual(0);
+            expect(moveCrab_part1(0,2)).toEqual(2);
+            expect(moveCrab_part1(4,2)).toEqual(2);
+            expect(moveCrab_part1(2,2)).toEqual(0);
+            expect(moveCrab_part1(7,2)).toEqual(5);
+            expect(moveCrab_part1(1,2)).toEqual(1);
+            expect(moveCrab_part1(2,2)).toEqual(0);
+            expect(moveCrab_part1(14,2)).toEqual(12);
         });
 
         it("Should calculate cost to align_sample input", () => {
-            expect(costToAlign(sampleInput, 2)).toEqual(37);
-            expect(costToAlign(sampleInput, 1)).toEqual(41);
-            expect(costToAlign(sampleInput, 3)).toEqual(39);
-            expect(costToAlign(sampleInput, 10)).toEqual(71);
+            expect(costToAlign_part1(sampleInput, 2)).toEqual(37);
+            expect(costToAlign_part1(sampleInput, 1)).toEqual(41);
+            expect(costToAlign_part1(sampleInput, 3)).toEqual(39);
+            expect(costToAlign_part1(sampleInput, 10)).toEqual(71);
         });
 
         it("Should determine least costly position_sample input", () => {
-            expect(calculateCheapestPosition(sampleInput)).toEqual([2, 37]);
+            expect(calculateCheapestPosition_part1(sampleInput)).toEqual([2, 37]);
         });
 
         it("Should determine least costly position_sample input", () => {
-            expect(calculateCheapestPosition(puzzleInput)).toEqual([316, 336721]);
+            expect(calculateCheapestPosition_part1(puzzleInput)).toEqual([316, 336721]);
         });
     });
 
     describe("Part 2", () => {
+        it("Should calculate cost to align_single crabs", () => {
+            expect(moveCrab_part2(16,5)).toEqual(66);
+            expect(moveCrab_part2(1,5)).toEqual(10);
+            expect(moveCrab_part2(2,5)).toEqual(6);
+            expect(moveCrab_part2(0,5)).toEqual(15);
+            expect(moveCrab_part2(4,5)).toEqual(1);
+            expect(moveCrab_part2(2,5)).toEqual(6);
+            expect(moveCrab_part2(7,5)).toEqual(3);
+            expect(moveCrab_part2(1,5)).toEqual(10);
+            expect(moveCrab_part2(2,5)).toEqual(6);
+            expect(moveCrab_part2(14,5)).toEqual(45);
+        });
 
+        it("Should determine least costly position_sample input", () => {
+            expect(calculateCheapestPosition_part2(sampleInput)).toEqual([5, 168]);
+        });
+
+        it("Should determine least costly position_sample input", () => {
+            expect(calculateCheapestPosition_part2(puzzleInput)).toEqual([466, 91638945]);
+        });
     });
 
     let sampleInput = [16, 1, 2, 0, 4, 2, 7, 1, 2, 14]
