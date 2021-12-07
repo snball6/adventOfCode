@@ -39,12 +39,21 @@ let countdown = setInterval(function () {
             let elementToUpdate = parentRowElement[0].children[dateToUpdate-1]; //index off by one
             elementToUpdate.parentNode.replaceChild(linkedSingleDigitATag, elementToUpdate);
 
-            let memberRows = document.getElementsByClassName(mem-row);
-            //update class styling of stars
+            let memberRows = document.getElementsByClassName("mem-row");
+            let innerSpans = memberRows[0].children;
+            //index 0 is position
+            //index 1 is score
+            //index 2-27 are stars
+            innerSpans[dateToUpdate+1].classList.remove('privboard-star-locked');
+            innerSpans[dateToUpdate+1].classList.add('privboard-star-unlocked');
             
+            // privboard-star-locked
+            // privboard-star-unlocked
+            // privboard-star-firstonly
+            // privboard-star-both
         }
     }
-}, 10);
+}, 100);
 
 function customDateFormat(date) {// because of stupid 0 indexed months
     return date.getFullYear() + "." + (date.getMonth() + 1).toString().padStart(2, '0') + "." + date.getDate().toString().padStart(2, '0') + " " + date.getHours().toString().padStart(2, '0') + ":" + (date.getMinutes().toString().padStart(2, '0'));
