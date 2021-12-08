@@ -14,7 +14,38 @@
 //         }
 //     }
 // }; 
+function parseMember() {
+    //object I THINK I might need to go for - ultimately scores and position will need to be calculated based on starDates to animate...
+    // membersArray = [
+    //         {
+    //             id: 1234,
+    //             name: 'Sarah"',
+    //             stardates: {
+    //                 '6.1': new Date(),
+    //                 '6.2': new Date()
+    //             }
+    //         }
+    //     ]
 
+    let membersArray = [];
+    let tempMember;
+    //JSON parsing not working yet...
+    console.log(input['members']);
+    for(entry in input['members']){
+        console.log(entry);
+        tempMember = input['member'][entry.toString()];
+        console.log(tempMember);
+        membersArray.push({
+            id: tempMember.id,
+            name: tempMember.name
+        });
+    }
+
+    console.log(membersArray);
+    return membersArray
+}
+
+// let members = parseMember();
 
 let countDownTime = new Date('December 1, 2021 01:00:00');
 let countDownStop = new Date('December 25, 2021 05:00:00')
@@ -22,8 +53,8 @@ let countDownStop = new Date('December 25, 2021 05:00:00')
 let dateChange = false;
 let runOnce = true;
 let countdown = setInterval(function () {
-    if(runOnce){
-        runOnce= false;
+    if (runOnce) {
+        runOnce = false;
         let newElement = createMemberRows()
         let memberRows = document.getElementById("member-rows");
         memberRows.parentNode.replaceChild(newElement, memberRows);
@@ -37,8 +68,6 @@ let countdown = setInterval(function () {
         countDownTime = newDate
         document.getElementById("countdown").innerHTML = customDateFormat(countDownTime);
 
-        // If a star has been updated?//
-
         if (dateChange) {
             dateChange = false;
             let dateToUpdate = countDownTime.getDate();
@@ -51,7 +80,7 @@ let countdown = setInterval(function () {
 
             //Update stars for day to "unlocked"
             let memberRows = document.getElementsByClassName("mem-row");
-            for (let i = 0; i < memberRows.length; i++){
+            for (let i = 0; i < memberRows.length; i++) {
                 let innerSpans = memberRows[i].children;
                 //index 0 is position
                 //index 1 is score
@@ -59,7 +88,7 @@ let countdown = setInterval(function () {
                 innerSpans[dateToUpdate + 1].classList.remove('privboard-star-locked');
                 innerSpans[dateToUpdate + 1].classList.add('privboard-star-unlocked');
             }
-           
+
         }
     }
 }, 10);
@@ -109,18 +138,17 @@ function dateAdd(date, interval, units) {
     return ret;
 }
 
-function createMemberRows(members){
+function createMemberRows(members) {
+    let containerSpan = document.createElement('span');
     // example element
     // <div id='1105834' class="privboard-row mem-row"><span class="privboard-position"> 1)</span><span class="score"> 000 </span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">Sarah Ball</span></div>
-    let outerDiv = document.createElement('div');
-    outerDiv.id = 'theId';
-    outerDiv.classList.add("privboard-createMemberRows", "mem-row");
-    outerDiv.innerHTML = '<span class="privboard-position"> #)</span> 000 <span class="privboard-star-locked">*</span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">Peter McLarnan</span>';
-    
-    // let positionSpan = document.createElement('span');
-    // positionSpan.classList = ["privboard-position"];
-    // positionSpan.innerHTML = "&nbsp01)"
 
-    // outerDiv.appendChild(positionSpan);
-    return outerDiv;
+    // for(let i = 0; i<members.length; i++){
+        let outerDiv = document.createElement('div');
+        outerDiv.id = 'theId';
+        outerDiv.classList.add("privboard-createMemberRows", "mem-row");
+        outerDiv.innerHTML = '<span class="privboard-position"> #)</span> 000 <span class="privboard-star-locked">*</span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">Name</span>';
+        containerSpan.appendChild(outerDiv);
+    // }
+    return containerSpan;
 }
