@@ -15,6 +15,13 @@ describe("day8", () => {
         });
 
         describe("Part 2", () => {
+            it("Should map output values_single Line", () => {
+                let singleLine = [{
+                    tenUnique: ["acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"],
+                    fourOutput: ["cdfeb", "fcadb", "cdfeb", "cdbaf"]
+                }];
+                expect(countEasyDigitsInOutput(singleLine)).toEqual([5,3,5,3]);
+            });
         });
     });
 });
