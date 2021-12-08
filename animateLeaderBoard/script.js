@@ -755,7 +755,7 @@ let countdown = setInterval(function () {
     if (countDownTime < countDownStop) {
 
 
-        let newDate = dateAdd(countDownTime, 'minute', 60);
+        let newDate = dateAdd(countDownTime, 'minute', 5);
         dateChange = newDate.getDate() != countDownTime.getDate();
         countDownTime = newDate
         document.getElementById("countdown").innerHTML = customDateFormat(countDownTime);
@@ -783,7 +783,7 @@ let countdown = setInterval(function () {
 
         }
     }
-}, 10);
+}, 1 );
 
 function customDateFormat(date) {// because of stupid 0 indexed months
     return date.getFullYear() + "." + (date.getMonth() + 1).toString().padStart(2, '0') + "." + date.getDate().toString().padStart(2, '0') + " " + date.getHours().toString().padStart(2, '0') + ":" + (date.getMinutes().toString().padStart(2, '0'));
