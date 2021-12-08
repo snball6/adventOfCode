@@ -14,55 +14,64 @@
 //         }
 //     }
 // }; 
+
+
 let countDownTime = new Date('December 1, 2021 01:00:00');
-let countDownStop = new Date('December 25, 2021 01:00:00')
+let countDownStop = new Date('December 25, 2021 05:00:00')
 
 let dateChange = false;
+let runOnce = true;
 let countdown = setInterval(function () {
-    if (countDownTime < countDownStop){
+    if(runOnce){
+        runOnce= false;
+        let newElement = createMemberRows()
+        let memberRows = document.getElementById("member-rows");
+        memberRows.parentNode.replaceChild(newElement, memberRows);
+    }
+
+    if (countDownTime < countDownStop) {
+
+
         let newDate = dateAdd(countDownTime, 'minute', 60);
         dateChange = newDate.getDate() != countDownTime.getDate();
         countDownTime = newDate
         document.getElementById("countdown").innerHTML = customDateFormat(countDownTime);
 
-        if(dateChange){
+        // If a star has been updated?//
+
+        if (dateChange) {
             dateChange = false;
-            //NOT YET WORKING incrementally updating date row to links to progress through puzzle unlocks
-            //useful link: https://www.javascripttutorial.net/dom/manipulating/replace-a-dom-element/
-
-
             let dateToUpdate = countDownTime.getDate();
 
             //Update links of numbers
             let linkedSingleDigitATag = createDayATag(dateToUpdate)
             let parentRowElement = document.getElementsByClassName("privboard-days");
-            let elementToUpdate = parentRowElement[0].children[dateToUpdate-1]; //index off by one
+            let elementToUpdate = parentRowElement[0].children[dateToUpdate - 1]; //index off by one
             elementToUpdate.parentNode.replaceChild(linkedSingleDigitATag, elementToUpdate);
 
+            //Update stars for day to "unlocked"
             let memberRows = document.getElementsByClassName("mem-row");
-            let innerSpans = memberRows[0].children;
-            //index 0 is position
-            //index 1 is score
-            //index 2-27 are stars
-            innerSpans[dateToUpdate+1].classList.remove('privboard-star-locked');
-            innerSpans[dateToUpdate+1].classList.add('privboard-star-unlocked');
-            
-            // privboard-star-locked
-            // privboard-star-unlocked
-            // privboard-star-firstonly
-            // privboard-star-both
+            for (let i = 0; i < memberRows.length; i++){
+                let innerSpans = memberRows[i].children;
+                //index 0 is position
+                //index 1 is score
+                //index 2-27 are stars
+                innerSpans[dateToUpdate + 1].classList.remove('privboard-star-locked');
+                innerSpans[dateToUpdate + 1].classList.add('privboard-star-unlocked');
+            }
+           
         }
     }
-}, 100);
+}, 10);
 
 function customDateFormat(date) {// because of stupid 0 indexed months
     return date.getFullYear() + "." + (date.getMonth() + 1).toString().padStart(2, '0') + "." + date.getDate().toString().padStart(2, '0') + " " + date.getHours().toString().padStart(2, '0') + ":" + (date.getMinutes().toString().padStart(2, '0'));
 }
 
-function createDayATag(dayNumber){
+function createDayATag(dayNumber) {
     let linkedSingleDigitATag = document.createElement("a");
-    linkedSingleDigitATag.href = "https://adventofcode.com/2021/day/"+dayNumber;
-    if(dayNumber<10){
+    linkedSingleDigitATag.href = "https://adventofcode.com/2021/day/" + dayNumber;
+    if (dayNumber < 10) {
         linkedSingleDigitATag.innerText = dayNumber;
     } else {
         let dayDigits = dayNumber.toString().split('');
@@ -100,6 +109,18 @@ function dateAdd(date, interval, units) {
     return ret;
 }
 
-function parseMembers() {
+function createMemberRows(members){
+    // example element
+    // <div id='1105834' class="privboard-row mem-row"><span class="privboard-position"> 1)</span><span class="score"> 000 </span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">Sarah Ball</span></div>
+    let outerDiv = document.createElement('div');
+    outerDiv.id = 'theId';
+    outerDiv.classList.add("privboard-createMemberRows", "mem-row");
+    outerDiv.innerHTML = '<span class="privboard-position"> #)</span> 000 <span class="privboard-star-locked">*</span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">Peter McLarnan</span>';
+    
+    // let positionSpan = document.createElement('span');
+    // positionSpan.classList = ["privboard-position"];
+    // positionSpan.innerHTML = "&nbsp01)"
 
+    // outerDiv.appendChild(positionSpan);
+    return outerDiv;
 }
