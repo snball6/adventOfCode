@@ -67,7 +67,7 @@ let countdown = setInterval(function () {
     }
 
     if (countDownTime < countDownStop) {
-        let newDate = dateAdd(countDownTime, 'minute', 5);
+        let newDate = dateAdd(countDownTime, 'minute', 1);
         dateChange = newDate.getDate() != countDownTime.getDate();
         countDownTime = newDate
         document.getElementById("countdown").innerHTML = customDateFormat(countDownTime);
@@ -92,7 +92,6 @@ let countdown = setInterval(function () {
                 innerSpans[dateToUpdate + 1].classList.remove('privboard-star-locked');
                 innerSpans[dateToUpdate + 1].classList.add('privboard-star-unlocked');
             }
-
         }
 
         //while last item in stardate is less than current time
@@ -101,6 +100,7 @@ let countdown = setInterval(function () {
             let singleStarDate = stardates[stardates.length - 1];
             let memberRow = document.getElementById(singleStarDate.memberId);
 
+            //----------------------------update star----------------------------
             let innerSpans = memberRow.children;
             //index 0 is position
             //index 1 is score
@@ -108,7 +108,7 @@ let countdown = setInterval(function () {
 
             let dayOfStar = singleStarDate.star[0];
             let part1Or2 = singleStarDate.star[1];
-            let starSpan = innerSpans[dayOfStar + 2]; //If day 1 star accomplished, want span 3
+            let starSpan = innerSpans[dayOfStar + 2];
             if (part1Or2 == "1") {
                 starSpan.classList.remove('privboard-star-unlocked');
                 starSpan.classList.add('privboard-star-firstonly');
@@ -116,18 +116,29 @@ let countdown = setInterval(function () {
                 starSpan.classList.remove('privboard-star-firstonly');
                 starSpan.classList.add('privboard-star-both');
             }
+
+            //----------------------------update score----------------------------
             let priorScore = memberScores[singleStarDate.memberId];
             let pointsForNewStar = starscores[dayOfStar + '.' + part1Or2];
             let newScore = priorScore + pointsForNewStar;
             memberScores[singleStarDate.memberId] = newScore;
 
-            //STILL NEED TO SCORE TOTAL SCORE - currently just swapping out from one day to the next;
             innerSpans[1].innerHTML = paddedScores(newScore);
             starscores[dayOfStar + '.' + part1Or2] = pointsForNewStar - 1; //deincrement for next winner
             stardates.pop();
+
+            //----------------------------sort rows----------------------------
+            let memberRows = document.getElementsByClassName("mem-row");
+            sortMembers(memberRows);
+
         }
     }
 }, 1);
+
+
+function sortMembers(parentElement){
+    
+}
 
 function paddedScores(value) {
     switch (value.toString().length) {
