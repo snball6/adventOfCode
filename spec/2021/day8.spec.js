@@ -43,7 +43,7 @@ describe("day8", () => {
                 expect(mapOutput(singleLine)).toEqual(5353);
             });
 
-            fit("Should map output values_single Line_problem set", () => {
+            it("Should map output values_single Line_problem set", () => {
                 let singleLine =  { tenUnique: ["be", "cfbegad", "cbdgef", "fgaecd", "cgeb", "fdcge", "agebfd", "fecdb", "fabcd", "edb"], fourOutput: ["fdgacbe", "cefdb", "cefbgd", "gcbe"] };
                 
                 expect(buildMap(singleLine)).toEqual({
