@@ -104,11 +104,14 @@ function buildMap(input) {
     let five = fiveDigits.filter(e => {
         return differingSegmentsFrom6(map[6], e) == 1;
     });
+    console.log("five", five)
     map[5] = five[0];
-    fiveDigits.splice(fiveDigits.indexOf(five[0]), 1);
 
     //remaining five digit option
-    map[2] = fiveDigits[0];
+    let two = fiveDigits.filter(e => {
+        return differingSegmentsFrom6(map[6], e) == 2;
+    });
+    map[2] = two[0];
 
     return map;
 }

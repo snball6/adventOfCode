@@ -43,6 +43,25 @@ describe("day8", () => {
                 expect(mapOutput(singleLine)).toEqual(5353);
             });
 
+            fit("Should map output values_single Line_problem set", () => {
+                let singleLine =  { tenUnique: ["be", "cfbegad", "cbdgef", "fgaecd", "cgeb", "fdcge", "agebfd", "fecdb", "fabcd", "edb"], fourOutput: ["fdgacbe", "cefdb", "cefbgd", "gcbe"] };
+                
+                expect(buildMap(singleLine)).toEqual({
+                    0: "agebfd",
+                    1: "be",
+                    2: "fabcd",
+                    3: "fecdb",
+                    4: "cgeb",
+                    5: "fdcge",
+                    6: "fgaecd",
+                    7: "edb",
+                    8: "cfbegad",
+                    9: "cbdgef",
+                });
+                
+                expect(mapOutput(singleLine)).toEqual(8394);
+            });
+
             it("Should total all outputs", () => {
                 expect(totalOutputs(sampleInput)).toEqual(61229);
             });
