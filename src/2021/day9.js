@@ -9,7 +9,7 @@ function findLowestPoints(input) {
             tempCurrent = input[i][j];
 
             if (notTopRow(i)) {
-                if (!isLessThan(tempCurrent,input[i - 1][j])) {
+                if (!isLessThan(tempCurrent, input[i - 1][j])) {
                     lowCheck = false;
                 };
             }
@@ -41,12 +41,12 @@ function findLowestPoints(input) {
 }
 
 
-function getRiskLevel(input){
+function getRiskLevel(input) {
     let lowest = findLowestPoints(input);
     let total = 0;
 
-    for(let i = 0; i<lowest.length; i++){
-        total+=lowest[i]+1;
+    for (let i = 0; i < lowest.length; i++) {
+        total += lowest[i] + 1;
     }
     return total;
 }
@@ -71,4 +71,52 @@ function notBottom(i, input) {
 
 function isLessThan(current, neighbor) {
     return current < neighbor;
+}
+
+//----------------------------part2--------------------------
+function findLowestPointsLocations(input) {
+    let lowest = [];
+    let tempCurrent;
+    //for each row
+    for (let i = 0; i < input.length; i++) {
+        //for each string
+        for (let j = 0; j < input[i].length; j++) {
+            let lowCheck = true;
+            tempCurrent = input[i][j];
+
+            if (notTopRow(i)) {
+                if (!isLessThan(tempCurrent, input[i - 1][j])) {
+                    lowCheck = false;
+                };
+            }
+
+            if (notLeftEdge(j)) {
+                if (!isLessThan(tempCurrent, input[i][j - 1])) {
+                    lowCheck = false;
+                };
+            }
+
+            if (notBottom(i, input)) {
+                if (!isLessThan(tempCurrent, input[i + 1][j])) {
+                    lowCheck = false;
+                };
+            }
+
+            if (notRightEdge(j, input)) {
+                if (!isLessThan(tempCurrent, input[i][j + 1])) {
+                    lowCheck = false;
+                };
+            }
+
+            if (lowCheck) {
+                lowest.push({
+                    value: parseInt(tempCurrent),
+                    i: i,
+                    j: j
+                }
+                );
+            }
+        }
+    }
+    return lowest;
 }

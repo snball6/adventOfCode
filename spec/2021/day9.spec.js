@@ -3,15 +3,15 @@ describe("day9", () => {
     describe("Part 1", () => {
         it("should be able to check less than correctly_debugging", () => {
 
-            expect(isLessThan('2','5')).toBeTrue();
-            expect(isLessThan('0','5')).toBeTrue();
-            expect(isLessThan('2','9')).toBeTrue();
-            expect(isLessThan('1','3')).toBeTrue();
-            expect(isLessThan('0','0')).toBeFalse();
-            expect(isLessThan('1','1')).toBeFalse();
-            expect(isLessThan('8','2')).toBeFalse();
-            expect(isLessThan('9','0')).toBeFalse();
-            expect(isLessThan('6','5')).toBeFalse();
+            expect(isLessThan('2', '5')).toBeTrue();
+            expect(isLessThan('0', '5')).toBeTrue();
+            expect(isLessThan('2', '9')).toBeTrue();
+            expect(isLessThan('1', '3')).toBeTrue();
+            expect(isLessThan('0', '0')).toBeFalse();
+            expect(isLessThan('1', '1')).toBeFalse();
+            expect(isLessThan('8', '2')).toBeFalse();
+            expect(isLessThan('9', '0')).toBeFalse();
+            expect(isLessThan('6', '5')).toBeFalse();
         });
 
         it("Should find lowestPoints_smaller", () => {
@@ -22,6 +22,7 @@ describe("day9", () => {
             ]
             expect(findLowestPoints(smaller)).toEqual([1]);
         });
+
         it("Should find lowestPoints_sampleInput", () => {
             expect(findLowestPoints(sampleInput)).toEqual([1, 0, 5, 5]);
         });
@@ -37,7 +38,13 @@ describe("day9", () => {
         });
 
         describe("Part 2", () => {
-
+            it("Should find lowestPointsLocations so I can find the basin around_sampleInput", () => {
+                expect(findLowestPointsLocations(sampleInput)).toEqual([
+                    { value: 1, i: 0, j:1}, 
+                    { value: 0, i: 0, j:9}, 
+                    { value: 5, i: 2, j:2}, 
+                    { value: 5, i: 4, j:6}]);
+            });
 
         });
     });
@@ -50,7 +57,7 @@ let sampleInput = [
     '8767896789',
     '9899965678'];
 
-    let puzzleInput = [
+let puzzleInput = [
     '3566789567953212679875689976651013679329876404568999884568910249798689921989789990134578923557899767',
     '2675895456894334598764999865432124567919995323789498765779991998654578899766678981245678912346789656',
     '1234996345789445679989899976543534678998999464569329876899989897643659789954569876456899101237891235',
