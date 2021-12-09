@@ -43,8 +43,8 @@ describe("day8", () => {
                 expect(mapOutput(singleLine)).toEqual(5353);
             });
 
-            it("Should total", () => {
- 
+            it("Should total all outputs", () => {
+                expect(totalOutputs(sampleInput)).toEqual(61229);
             });
         });
     });

@@ -125,6 +125,7 @@ function differingSegmentsFrom6(sixMap, possible2or5) {
 }
 
 function mapOutput(input) {
+    console.log(input);
     let map = buildMap(input);
 
     let output = '';
@@ -140,6 +141,8 @@ function mapOutput(input) {
 function findValue(temp, map){
     for(entry in map){
         //MAP ENTRIES MAY NOT BE IN SAME LETTER ORDER AS THE OUTPUT .... WHYYY ... 
+        console.log(map);
+        console.log("mapEntry",map[entry]);
         if(temp.length == map[entry].length){
             let splitTemp = temp.split("");
             let splitPossible = map[entry].split("");
@@ -151,5 +154,13 @@ function findValue(temp, map){
     }
 }
 
+
+function totalOutputs(inputArray){
+    let total = 0;
+    for(let i = 0; i<inputArray.length; i++){
+        total+= mapOutput(inputArray[i]);
+    }
+    return total;
+}
 
 
