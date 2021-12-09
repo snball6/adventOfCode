@@ -15,12 +15,36 @@ describe("day8", () => {
         });
 
         describe("Part 2", () => {
-            it("Should map output values_single Line", () => {
-                let singleLine = [{
+
+            it("Should buildMap of values_single Line", () => {
+                let singleLine = {
                     tenUnique: ["acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"],
                     fourOutput: ["cdfeb", "fcadb", "cdfeb", "cdbaf"]
-                }];
-                expect(countEasyDigitsInOutput(singleLine)).toEqual([5,3,5,3]);
+                };
+                expect(buildMap(singleLine)).toEqual({
+                    0: "cagedb",
+                    1: "ab",
+                    2: "gcdfa",
+                    3: "fbcad",
+                    4: "eafb",
+                    5: "cdfbe",
+                    6: "cdfgeb",
+                    7: "dab",
+                    8: "acedgfb",
+                    9: "cefabd",
+                });
+            });
+
+            it("Should map output values_single Line", () => {
+                let singleLine = {
+                    tenUnique: ["acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"],
+                    fourOutput: ["cdfeb", "fcadb", "cdfeb", "cdbaf"]
+                };
+                expect(mapOutput(singleLine)).toEqual(5353);
+            });
+
+            it("Should total", () => {
+ 
             });
         });
     });
