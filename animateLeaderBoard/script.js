@@ -46,6 +46,8 @@ function parseMember() {
 let parsed = parseMember();
 let members = parsed[0];
 let stardates = parsed[1].sort((first, second) => (first.timestamp < second.timestamp ? 1 : -1));
+let memberNumber = members.length;
+let starscores = generateInitialStarValues(memberNumber);
 
 console.log(stardates);
 
@@ -103,10 +105,9 @@ let countdown = setInterval(function () {
             //index 1 is score
             //index 2-27 are stars
 
-            //string vs int can be...
             let dayOfStar = singleStarDate.star[0];
             let part1Or2 = singleStarDate.star[1];
-            let starSpan = innerSpans[dayOfStar + 1]; //If day 1 star accomplished, want span 3
+            let starSpan = innerSpans[dayOfStar + 2]; //If day 1 star accomplished, want span 3
             if (part1Or2 == "1") {
                 starSpan.classList.remove('privboard-star-unlocked');
                 starSpan.classList.add('privboard-star-firstonly');
@@ -114,11 +115,26 @@ let countdown = setInterval(function () {
                 starSpan.classList.remove('privboard-star-firstonly');
                 starSpan.classList.add('privboard-star-both');
             }
-
+            //STILL NEED TO SCORE TOTAL SCORE - currently just swapping out from one day to the next;
+            innerSpans[1].innerHTML = paddedScores(starscores[dayOfStar + '.' + part1Or2]);
+            starscores[dayOfStar + '.' + part1Or2] = starscores[dayOfStar + '.' + part1Or2]-1; //deincrement for next winner
             stardates.pop();
         }
     }
 }, 1);
+
+function paddedScores(value) {
+    switch (value.toString().length) {
+        case 3:
+            return "&nbsp" + value + "&nbsp";
+        case 2:
+            return "&nbsp&nbsp" + value + "&nbsp";
+        case 1:
+            return "&nbsp&nbsp&nbsp" + value + "&nbsp";
+        default:
+            return "Bad score value";
+    }
+}
 
 function customDateFormat(date) {
     return date.getFullYear() + "." + (date.getMonth() + 1).toString().padStart(2, '0') + "." + date.getDate().toString().padStart(2, '0') + " " + date.getHours().toString().padStart(2, '0') + ":" + (date.getMinutes().toString().padStart(2, '0'));
@@ -174,8 +190,63 @@ function createMemberRows(members) {
         let outerDiv = document.createElement('div');
         outerDiv.id = members[i].id;
         outerDiv.classList.add("privboard-createMemberRows", "mem-row");
-        outerDiv.innerHTML = '<span class="privboard-position"> #)</span> 000 <span class="privboard-star-locked">*</span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">' + members[i].name + '</span>';
+        outerDiv.innerHTML = '<span class="privboard-position"> #)</span><span>&nbsp&nbsp&nbsp0&nbsp</span><span class="privboard-star-locked">*</span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">' + members[i].name + '</span>';
         containerSpan.appendChild(outerDiv);
     }
     return containerSpan;
+}
+
+function generateInitialStarValues(memberNumber) {
+    return {
+        '1.1': memberNumber,
+        '2.1': memberNumber,
+        '3.1': memberNumber,
+        '4.1': memberNumber,
+        '5.1': memberNumber,
+        '6.1': memberNumber,
+        '7.1': memberNumber,
+        '8.1': memberNumber,
+        '9.1': memberNumber,
+        '10.1': memberNumber,
+        '11.1': memberNumber,
+        '12.1': memberNumber,
+        '13.1': memberNumber,
+        '14.1': memberNumber,
+        '15.1': memberNumber,
+        '16.1': memberNumber,
+        '17.1': memberNumber,
+        '18.1': memberNumber,
+        '19.1': memberNumber,
+        '20.1': memberNumber,
+        '21.1': memberNumber,
+        '22.1': memberNumber,
+        '23.1': memberNumber,
+        '24.1': memberNumber,
+        '25.1': memberNumber,
+        '1.2': memberNumber,
+        '2.2': memberNumber,
+        '3.2': memberNumber,
+        '4.2': memberNumber,
+        '5.2': memberNumber,
+        '6.2': memberNumber,
+        '7.2': memberNumber,
+        '8.2': memberNumber,
+        '9.2': memberNumber,
+        '10.2': memberNumber,
+        '11.2': memberNumber,
+        '12.2': memberNumber,
+        '13.2': memberNumber,
+        '14.2': memberNumber,
+        '15.2': memberNumber,
+        '16.2': memberNumber,
+        '17.2': memberNumber,
+        '18.2': memberNumber,
+        '19.2': memberNumber,
+        '20.2': memberNumber,
+        '21.2': memberNumber,
+        '22.2': memberNumber,
+        '23.2': memberNumber,
+        '24.2': memberNumber,
+        '25.2': memberNumber
+    }
 }
