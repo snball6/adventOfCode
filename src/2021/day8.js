@@ -66,7 +66,6 @@ function buildMap(input) {
 
     //2,3,5 only 3 will have both of the segments used by 1
     let oneSegmentone = map[1][0];
-    console.log('0',fiveDigits);
     let oneSegmenttwo = map[1][1];;
     let three = fiveDigits.filter((e) => {
         return e.includes(oneSegmentone) && e.includes(oneSegmenttwo);
@@ -101,12 +100,10 @@ function buildMap(input) {
     //remaining six digit option
     map[0] = sixDigits[0];
 
-    console.log('fiveDigits', fiveDigits);
     // between 2 and 5. 5 will be 1 segement off from 6 while 2 with be 2 segements off
     let five = fiveDigits.filter(e => {
         return differingSegmentsFrom6(map[6], e) == 1;
     });
-    console.log("five", five)
     map[5] = five[0];
 
     //remaining five digit option
