@@ -36,17 +36,17 @@ describe("day9", () => {
             expect(getRiskLevel(puzzleInput)).toEqual(566);
 
         });
+    });
 
-        describe("Part 2", () => {
-            it("Should find lowestPointsLocations so I can find the basin around_sampleInput", () => {
-                expect(findLowestPointsLocations(sampleInput)).toEqual([
-                    { value: 1, i: 0, j:1}, 
-                    { value: 0, i: 0, j:9}, 
-                    { value: 5, i: 2, j:2}, 
-                    { value: 5, i: 4, j:6}]);
-            });
-
+    describe("Part 2", () => {
+        it("Should find lowestPointsLocations so I can find the basin around_sampleInput", () => {
+            expect(findLowestPointsLocations(sampleInput)).toEqual([
+                { value: 1, i: 0, j: 1 },
+                { value: 0, i: 0, j: 9 },
+                { value: 5, i: 2, j: 2 },
+                { value: 5, i: 4, j: 6 }]);
         });
+
     });
 });
 

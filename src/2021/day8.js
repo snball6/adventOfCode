@@ -1,11 +1,11 @@
-let segmentNumberToOptions = {
-    2: [1],
-    3: [7],
-    4: [4],
-    5: [2, 3, 5],
-    6: [0, 6, 9],
-    7: [8]
-}
+// let segmentNumberToOptions = {
+//     2: [1],
+//     3: [7],
+//     4: [4],
+//     5: [2, 3, 5],
+//     6: [0, 6, 9],
+//     7: [8]
+// }
 
 function countEasyDigitsInOutput(input) {
     let knownNumber = 0;
@@ -66,12 +66,13 @@ function buildMap(input) {
 
     //2,3,5 only 3 will have both of the segments used by 1
     let oneSegmentone = map[1][0];
+    console.log('0',fiveDigits);
     let oneSegmenttwo = map[1][1];;
     let three = fiveDigits.filter((e) => {
         return e.includes(oneSegmentone) && e.includes(oneSegmenttwo);
     });
     map[3] = three[0];
-    fiveDigits.splice(fiveDigits.indexOf(three[0], 1));
+    fiveDigits.splice(fiveDigits.indexOf(three[0]), 1); //missplaced paren of doom!!!
 
     //likewise of 0, 6, 9 only 6 will NOT have both of the segments used by 1
     let six = sixDigits.filter((e) => {
@@ -100,6 +101,7 @@ function buildMap(input) {
     //remaining six digit option
     map[0] = sixDigits[0];
 
+    console.log('fiveDigits', fiveDigits);
     // between 2 and 5. 5 will be 1 segement off from 6 while 2 with be 2 segements off
     let five = fiveDigits.filter(e => {
         return differingSegmentsFrom6(map[6], e) == 1;
@@ -128,7 +130,6 @@ function differingSegmentsFrom6(sixMap, possible2or5) {
 }
 
 function mapOutput(input) {
-    console.log(input);
     let map = buildMap(input);
 
     let output = '';
@@ -144,8 +145,6 @@ function mapOutput(input) {
 function findValue(temp, map){
     for(entry in map){
         //MAP ENTRIES MAY NOT BE IN SAME LETTER ORDER AS THE OUTPUT .... WHYYY ... 
-        console.log(map);
-        console.log("mapEntry",map[entry]);
         if(temp.length == map[entry].length){
             let splitTemp = temp.split("");
             let splitPossible = map[entry].split("");
