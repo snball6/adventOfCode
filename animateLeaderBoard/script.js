@@ -128,17 +128,11 @@ let countdown = setInterval(function () {
             stardates.pop();
 
             //----------------------------sort rows----------------------------
-            let memberRows = document.getElementsByClassName("mem-row");
-            sortMembers(memberRows);
-
+            memberRow.before()
         }
     }
 }, 1);
 
-
-function sortMembers(parentElement){
-    
-}
 
 function paddedScores(value) {
     switch (value.toString().length) {

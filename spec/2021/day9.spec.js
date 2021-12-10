@@ -46,6 +46,24 @@ describe("day9", () => {
                 { value: 5, i: 4, j: 6 }]);
         });
 
+        it("Should maybe look at the 9s first--everything within is a basin", () => {
+            //hm... maybe I should look for the 9's instead. Then the remainders are basins
+            //The problem is determining which remainders are "adjacent" and how
+            //possible stackoverflow match: https://stackoverflow.com/questions/42839096/find-and-group-together-adjacent-characters-in-an-array-of-strings
+
+
+            //nevermind - I went and made a visual in google sheets (see spreadsheet alternatives folder)
+            //did some parsing of input by hand to split numbers over columns
+            //used conditional formatting to highight the 9 ridges
+            //looked for bigger spots and highlights each grouping and looked at the "count" in the bottom right of sheets
+            //once I had a good idea of what my biggest were, sometimes I'd give up part way (red line basins) and not count out a full basin
+            //kept my top counts in the upper left
+            //trial and error, when I thought I had my bigest I'd submit
+            //4th try it worked!
+
+            //Yay for the power of the human brain "that looks big" squishy intelligence.
+        });
+
     });
 
 
