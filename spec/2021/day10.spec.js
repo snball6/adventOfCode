@@ -32,9 +32,30 @@ describe("day10", () => {
 
 
         describe("Part 2", () => {
-            it("placeholder", () => {
-
+            it("should find missing closures for line", () => {
+                expect(findMissingClosures("[({(<(())[]>[[{[]{<()<>>")).toEqual("}}]])})]")
+                expect(findMissingClosures("[(()[<>])]({[<{<<[]>>(")).toEqual(")}>]})");
+                expect(findMissingClosures("(((({<>}<{<{<>}{[]{[]{}")).toEqual("}}>}>))))");
+                expect(findMissingClosures("{<[[]]>}<{[{[{[]{()[[[]")).toEqual("]]}}]}]}>");
+                expect(findMissingClosures("<{([{{}}[<[[[<>{}]]]>[]]")).toEqual("])}>");
             });
+
+            it("should score line closures", () => {
+                expect(scoreClosures("}}]])})]")).toEqual(288957);
+                expect(scoreClosures(")}>]})")).toEqual(5566);
+                expect(scoreClosures("}}>}>))))")).toEqual(1480781);
+                expect(scoreClosures("]]}}]}]}>")).toEqual(995444);
+                expect(scoreClosures("])}>")).toEqual(294);
+            });
+
+            it("should score autocompletes_sampleInput", () => {
+                expect(scoreAutoCompletes(sampleInput)).toEqual(288957);
+            });
+
+            it("should score autocompletes_puzzleInput", () => {
+                expect(scoreAutoCompletes(puzzleInput)).toEqual(2412013412);
+            });
+
         });
 
         let sampleInput = [
