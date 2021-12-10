@@ -67,7 +67,7 @@ let countdown = setInterval(function () {
     }
 
     if (countDownTime < countDownStop) {
-        let newDate = dateAdd(countDownTime, 'minute', 1);
+        let newDate = dateAdd(countDownTime, 'minute', 5);
         dateChange = newDate.getDate() != countDownTime.getDate();
         countDownTime = newDate
         document.getElementById("countdown").innerHTML = customDateFormat(countDownTime);
@@ -204,6 +204,10 @@ function createMemberRows(members) {
     // <div id='1105834' class="privboard-row mem-row"><span class="privboard-position"> 1)</span><span class="score"> 000 </span><span class="privboard-star-unlocked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span><span class="privboard-star-locked">*</span>  <span class="privboard-name">Sarah Ball</span></div>
 
     for (let i = 0; i < members.length; i++) {
+        //Hailey case
+        if(members[i].id == '1666139'){
+            members[i].name = "Hailey Quinn";
+        }
         let outerDiv = document.createElement('div');
         outerDiv.id = members[i].id;
         outerDiv.classList.add("privboard-createMemberRows", "mem-row");
