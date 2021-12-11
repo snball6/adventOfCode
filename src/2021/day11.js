@@ -11,11 +11,9 @@ function countFlashes(input, days) {
     let flashesCount = 0;
 
     let octoArray = parseToOctopus(input);
-    console.log(parseToArray(octoArray));
     for(let day = 1; day < days; day++){
         octoArray = takeStep(octoArray);
 
-        console.log(parseToArray(octoArray));
         //get flashed
         let flashed = getAllFlashed(octoArray);
         flashesCount+=flashed.length;
@@ -70,15 +68,14 @@ function takeStep(input) {
     for (let row = 0; row < input.length; row++) {
         for (let col = 0; col < input[row].length; col++) {
             let currentOcto = input[row][col];
-
-            if (currentOcto.value >= 9) {
+            currentOcto.value++;
+            if (currentOcto.value > 9) {
                 //increaseNeighbors
                 flash(currentOcto, input);
-            } else {
-                currentOcto.value++;
             }
         }
     }
+    console.log('initial increase', parseToArray(input));
 
     //handle chain reaction flash
     let filteredOcto = getAllUnflashed(input);
@@ -95,7 +92,7 @@ function takeStep(input) {
         for (let col = 0; col < input[row].length; col++) {
             let currentOcto = input[row][col];
 
-            if (currentOcto.value >= 9) {
+            if (currentOcto.value > 9) {
                 currentOcto.value = 0;
             }
         }
@@ -106,7 +103,7 @@ function takeStep(input) {
 function getAllUnflashed(octo2DArray) {
     let octo1DArray = [];
     for (let row = 0; row < octo2DArray.length; row++) {
-        let filteredArray = octo2DArray[row].filter(octo => octo.value >= 9 && !octo.hasFlashed);
+        let filteredArray = octo2DArray[row].filter(octo => octo.value > 9 && !octo.hasFlashed);
         octo1DArray = octo1DArray.concat(filteredArray)
     }
     return octo1DArray;
