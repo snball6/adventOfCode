@@ -70,11 +70,10 @@ describe("day11", () => {
             ])
         });
 
-        fit('should simulate flashes_sampleInput', () => {
+        it('should simulate flashes_sampleInput', () => {
             let smallSample = parseToOctopus(sampleInput);
 
             let step1 = takeStep(smallSample)
-            console.log('returned',parseToArray(step1));
             expect(parseToArray(step1)).toEqual([
                 [6,5,9,4,2,5,4,3,3,4],
                 [3,8,5,6,9,6,5,8,2,2],
@@ -90,36 +89,35 @@ describe("day11", () => {
 
             let step2 = takeStep(step1)
             expect(parseToArray(step2)).toEqual([
-                [8,8,0,7,4,7,6,5,5,5]
-                [5,0,8,9,0,8,7,0,5,4]
-                [8,5,9,7,8,8,9,6,0,8]
-                [8,4,8,5,7,6,9,6,0,0]
-                [8,7,0,0,9,0,8,8,0,0]
-                [6,6,0,0,0,8,8,9,8,9]
-                [6,8,0,0,0,0,5,9,4,3]
-                [0,0,0,0,0,0,7,4,5,6]
-                [9,0,0,0,0,0,0,8,7,6]
+                [8,8,0,7,4,7,6,5,5,5],
+                [5,0,8,9,0,8,7,0,5,4],
+                [8,5,9,7,8,8,9,6,0,8],
+                [8,4,8,5,7,6,9,6,0,0],
+                [8,7,0,0,9,0,8,8,0,0],
+                [6,6,0,0,0,8,8,9,8,9],
+                [6,8,0,0,0,0,5,9,4,3],
+                [0,0,0,0,0,0,7,4,5,6],
+                [9,0,0,0,0,0,0,8,7,6],
                 [8,7,0,0,0,0,6,8,4,8]
             ]);
         });
 
-        // it("should count flashes_sampleData specific days", () => {
-        //     // expect(countFlashes(sampleInput, 1)).toEqual(0);
-        //     // expect(countFlashes(sampleInput, 2)).toEqual(35);
+        it("should count flashes_sampleData specific days", () => {
+            expect(countFlashes(sampleInput, 1)).toEqual(0);
+            expect(countFlashes(sampleInput, 2)).toEqual(35);
+        });
 
-        //     expect(countFlashes(sampleInput, 3)).toEqual(35+40);
-        // });
+        it("should count flashes_sampleData 10 day", () => {
+            expect(countFlashes(sampleInput, 10)).toEqual(204);
+        });
 
-        // it("should count flashes_sampleData 10 day", () => {
-        //     expect(countFlashes(sampleInput, 10)).toEqual(204);
-        // });
+        it("should count flashes_sampleData", () => {
+            expect(countFlashes(sampleInput, 100)).toEqual(1656);
+        });
 
-        // it("should count flashes_sampleData", () => {
-
-        //     expect(countFlashes(sampleInput, 100)).toEqual(1656);
-        // });
-
-
+        it("should count flashes_puzzleInput", () => {
+            expect(countFlashes(puzzleInput, 100)).toEqual(1688);
+        });
 
         describe("Part 2", () => {
 

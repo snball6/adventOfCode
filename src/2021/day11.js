@@ -11,7 +11,7 @@ function countFlashes(input, days) {
     let flashesCount = 0;
 
     let octoArray = parseToOctopus(input);
-    for(let day = 1; day < days; day++){
+    for(let day = 0; day < days; day++){
         octoArray = takeStep(octoArray);
 
         //get flashed
@@ -75,7 +75,6 @@ function takeStep(input) {
             }
         }
     }
-    console.log('initial increase', parseToArray(input));
 
     //handle chain reaction flash
     let filteredOcto = getAllUnflashed(input);
