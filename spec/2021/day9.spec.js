@@ -62,6 +62,7 @@ describe("day9", () => {
             //4th try it worked!
 
             //Yay for the power of the human brain "that looks big" squishy intelligence.
+            expect(true).toEqual(true);
         });
 
     });
