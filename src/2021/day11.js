@@ -11,15 +11,15 @@ function countFlashes(input, days) {
     let flashesCount = 0;
 
     let octoArray = parseToOctopus(input);
-    for(let day = 0; day < days; day++){
+    for (let day = 0; day < days; day++) {
         octoArray = takeStep(octoArray);
 
         //get flashed
         let flashed = getAllFlashed(octoArray);
-        flashesCount+=flashed.length;
+        flashesCount += flashed.length;
 
         //resent flashed bool
-        for(const flashedOcto of flashed){
+        for (const flashedOcto of flashed) {
             flashedOcto.hasFlashed = false;
         }
     }
@@ -27,6 +27,30 @@ function countFlashes(input, days) {
     return flashesCount;
 }
 
+function findAllFlashStep(input) {
+    let day = 1;
+    let octoArray = parseToOctopus(input);
+
+    let totalOcto = input.length * input[0].length;
+
+    while (true) {
+        octoArray = takeStep(octoArray);
+
+        //get flashed
+        let flashed = getAllFlashed(octoArray);
+        if (flashed.length == totalOcto) {
+            return day;
+        };
+
+        //reset flashes
+        for (const flashedOcto of flashed) {
+            flashedOcto.hasFlashed = false;
+        }
+        day++;
+    }
+
+    return flashesCount;
+}
 
 
 function parseToOctopus(input) {

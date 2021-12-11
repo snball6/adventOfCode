@@ -120,8 +120,13 @@ describe("day11", () => {
         });
 
         describe("Part 2", () => {
+            it("should find step with simultaneous flash_sampleInput", () => {
+                expect(findAllFlashStep(sampleInput)).toEqual(195);
+            });
 
-
+            it("should find step with simultaneous flash_puzzleInput", () => {
+                expect(findAllFlashStep(puzzleInput)).toEqual(403);
+            });
         });
 
         let sampleInput = [
