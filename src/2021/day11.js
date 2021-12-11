@@ -8,7 +8,25 @@ class Octo {
 }
 
 function countFlashes(input, days) {
-    return 0;
+    let flashesCount = 0;
+
+    let octoArray = parseToOctopus(input);
+    console.log(parseToArray(octoArray));
+    for(let day = 1; day < days; day++){
+        octoArray = takeStep(octoArray);
+
+        console.log(parseToArray(octoArray));
+        //get flashed
+        let flashed = getAllFlashed(octoArray);
+        flashesCount+=flashed.length;
+
+        //resent flashed bool
+        for(const flashedOcto of flashed){
+            flashedOcto.hasFlashed = false;
+        }
+    }
+
+    return flashesCount;
 }
 
 
@@ -94,12 +112,21 @@ function getAllUnflashed(octo2DArray) {
     return octo1DArray;
 }
 
+function getAllFlashed(octo2DArray) {
+    let octo1DArray = [];
+    for (let row = 0; row < octo2DArray.length; row++) {
+        let filteredArray = octo2DArray[row].filter(octo => octo.hasFlashed);
+        octo1DArray = octo1DArray.concat(filteredArray)
+    }
+    return octo1DArray;
+}
+
 function flash(octo, octoArray) {
     octo.hasFlashed = true; //reset to 0 can wait until all flashes finished
 
     let notTopEdge = octo.rowIndex > 0;
     let notLeftEdge = octo.colIndex > 0;
-    let notBottomEdge = octo.colIndex < octoArray.length - 1;
+    let notBottomEdge = octo.rowIndex < octoArray.length - 1;
     let notRightEdge = octo.colIndex < octoArray[0].length - 1;
 
     //abc

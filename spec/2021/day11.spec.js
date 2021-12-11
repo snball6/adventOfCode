@@ -8,8 +8,6 @@ describe("day11", () => {
 
             let parsed = parseToOctopus(smallSample);
 
-            console.log(parsed);
-
             expect(parsed[0][0].rowIndex).toEqual(0);
             expect(parsed[0][0].colIndex).toEqual(0);
             expect(parsed[0][0].value).toEqual(1);
@@ -53,8 +51,8 @@ describe("day11", () => {
                 '11111',
             ]);
 
-            let actual = takeStep(smallSample)
-            expect(parseToArray(actual)).toEqual([
+            let step1 = takeStep(smallSample)
+            expect(parseToArray(step1)).toEqual([
                 [3, 4, 5, 4, 3],
                 [4, 0, 0, 0, 4],
                 [5, 0, 0, 0, 5],
@@ -62,19 +60,30 @@ describe("day11", () => {
                 [3, 4, 5, 4, 3],
             ]);
 
-            // expect(takeStep(smallSample)).toEqual([
-            //     [4, 5, 6, 5, 4],
-            //     [5, 1, 1, 1, 5],
-            //     [6, 1, 1, 1, 6],
-            //     [5, 1, 1, 1, 5],
-            //     [4, 5, 6, 5, 4],
-            // ])
+            let step2 = takeStep(step1)
+            expect(parseToArray(step2)).toEqual([
+                [4, 5, 6, 5, 4],
+                [5, 1, 1, 1, 5],
+                [6, 1, 1, 1, 6],
+                [5, 1, 1, 1, 5],
+                [4, 5, 6, 5, 4],
+            ])
+        });
 
+        fit("should count flashes_sampleData specific days", () => {
+            // expect(countFlashes(sampleInput, 1)).toEqual(0);
+            // expect(countFlashes(sampleInput, 2)).toEqual(35);
+
+            expect(countFlashes(sampleInput, 3)).toEqual(35+40);
+        });
+
+        it("should count flashes_sampleData 10 day", () => {
+            expect(countFlashes(sampleInput, 10)).toEqual(204);
         });
 
         it("should count flashes_sampleData", () => {
 
-            // expect(countFlashes(sampleInput, 100)).toEqual(1656);
+            expect(countFlashes(sampleInput, 100)).toEqual(1656);
         });
 
 
