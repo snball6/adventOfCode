@@ -31,45 +31,46 @@ function buildCaves(input) {
 function findPossiblePaths(input){
     let caveMap = buildCaves(input);
 
-    let paths = buildPaths(caveMap, 'start');
-
-    caveMap['start'].adjacent.forEach(adjToStart => {
-
-    });
+    let paths = buildPaths(caveMap, 'start', []);
 
     return paths
 }
 
 function buildPaths(caveMap, currentNode, pathArray){
+    console.log('currentNode:', currentNode);
+    console.log('pathArray:', pathArray);
         if(currentNode == 'end'){
+            let pathForThisBranch = pathArray.slice();
+            pathForThisBranch.push('end');
             //if next node is end return string
-            return pathArray.push('end');
-        } else if (currentNode == 'start'){
-            //next node is start - bad path
-            return "No path";
+            return pathForThisBranch;
         } else {
             let previousVisits = pathArray.filter(path => path==currentNode).length;
-            if(!isUpperCase(currentNode) && previousVisits > 1 ){
+            if(!isUpperCase(currentNode) && previousVisits >= 1 ){
+                console.log("small cave - too many visits");
                 //next node has been visited once - small cave
                 return "No path";
-            } else if(isUpperCase(currentNode) && previousVisits > 2){
+            } else if(isUpperCase(currentNode) && previousVisits >= 2){
                 //next node has already been visited twice - big cave
+                console.log("big cave - too many visits");
                 return "No path";
             };
         }
 
         //for each adjacent build a path
-        let paths = [];
+        let paths = [''];
 
         caveMap[currentNode].adjacent.forEach(nextNode => {
-            let pathForThisBranch = pathArray.slice().push(currentNode);
-            let tempPath = buildPaths(caveMap, currentNode, pathForThisBranch);
+            let pathForThisBranch = pathArray.slice();
+            pathForThisBranch.push(currentNode);
+            let tempPath = buildPaths(caveMap, nextNode, pathForThisBranch);
 
             if(tempPath != "No path"){
                 paths.push(tempPath);
             }
         });
 
+        console.log(paths);
         return paths;
 }
 
