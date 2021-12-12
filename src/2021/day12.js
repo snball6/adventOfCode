@@ -30,10 +30,8 @@ function buildCaves(input) {
 
 function findPossiblePaths(input) {
     let caveMap = buildCaves(input);
-
     let paths = buildPaths(caveMap, 'start', []);
-
-    return paths
+    return paths;
 }
 
 function buildPaths(caveMap, currentNode, pathArray) {
@@ -67,21 +65,46 @@ function buildPaths(caveMap, currentNode, pathArray) {
 }
 
 
+function findPossiblePathsPart2(input) {
+    let caveMap = buildCaves(input);
+    let paths = buildPathsPart2(caveMap, 'start', [], false);
+    return paths;
+}
 
+function buildPathsPart2(caveMap, currentNode, pathArray, hasVisitedSmallCaveTwice) {
+    if (currentNode == 'end') {
+        let pathForThisBranch = pathArray.slice();
+        pathForThisBranch.push('end');
+        //if next node is end return string
+        return [pathForThisBranch];
+    } else {
+        let previousVisits = pathArray.filter(path => path == currentNode).length;
+        if (!isUpperCase(currentNode) &&
+            previousVisits >= 1) {
+            //next node has been visited once - small cave
+            if (hasVisitedSmallCaveTwice || currentNode == 'start') { //already double visited or start cave
+                return "No path";
+            } else {
+                hasVisitedSmallCaveTwice = true; //double visiting now and allowed to proceed
+            }
+        }
+    }
 
+    //for each adjacent build a path
+    let paths = [];
 
+    caveMap[currentNode].adjacent.forEach(nextNode => {
+        let pathForThisBranch = pathArray.slice();
+        pathForThisBranch.push(currentNode);
+        let tempPath = buildPathsPart2(caveMap, nextNode, pathForThisBranch, hasVisitedSmallCaveTwice);
 
+        if (tempPath != "No path") {
+            paths = paths.concat(tempPath);
+        }
+    });
 
-
-
-
-
-
-
-
-
-
-
+    return paths;
+}
 
 
 function isUpperCase(str) {
