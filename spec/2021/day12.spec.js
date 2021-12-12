@@ -64,34 +64,81 @@ describe("day12", () => {
             expect(actual).toContain(['start', 'b', 'end']);
         });
 
+        it('should map possible_sampleInputs', () => {
+            let slightlyLargerExample = [
+                ['dc', 'end'],
+                ['HN', 'start'],
+                ['start', 'kj'],
+                ['dc', 'start'],
+                ['dc', 'HN'],
+                ['LN', 'dc'],
+                ['HN', 'end'],
+                ['kj', 'sa'],
+                ['kj', 'HN'],
+                ['kj', 'dc']
+            ]
+            let actual = findPossiblePaths(slightlyLargerExample);
+            expect(actual.length).toEqual(19);
+
+            let evenLargerExample = [
+                ['fs','end'],
+                ['he','DX'],
+                ['fs','he'],
+                ['start','DX'],
+                ['pj','DX'],
+                ['end','zg'],
+                ['zg','sl'],
+                ['zg','pj'],
+                ['pj','he'],
+                ['RW','he'],
+                ['fs','DX'],
+                ['pj','RW'],
+                ['zg','RW'],
+                ['start','pj'],
+                ['he','WI'],
+                ['zg','he'],
+                ['pj','fs'],
+                ['start','RW']
+            ]
+            actual = findPossiblePaths(evenLargerExample);
+            expect(actual.length).toEqual(226);
+        });
+
+        it('should map possible_puzzleInput', () => {
+            let actual = findPossiblePaths(puzzleInput);
+            expect(actual.length).toEqual(19);
+        });
+
+
     });
     describe("Part 2", () => {
 
     });
 
-    let sampleInput = [
-        '5483143223',
-        '2745854711',
-        '5264556173',
-        '6141336146',
-        '6357385478',
-        '4167524645',
-        '2176841721',
-        '6882881134',
-        '4846848554',
-        '5283751526',
-    ]
+
 
     let puzzleInput = [
-        '3172537688',
-        '4566483125',
-        '6374512653',
-        '8321148885',
-        '4342747758',
-        '1362188582',
-        '7582213132',
-        '6887875268',
-        '7635112787',
-        '7242787273',
+        ['ln', 'nr'],
+        ['ln', 'wy'],
+        ['fl', 'XI'],
+        ['qc', 'start'],
+        ['qq', 'wy'],
+        ['qc', 'ln'],
+        ['ZD', 'nr'],
+        ['qc', 'YN'],
+        ['XI', 'wy'],
+        ['ln', 'qq'],
+        ['ln', 'XI'],
+        ['YN', 'start'],
+        ['qq', 'XI'],
+        ['nr', 'XI'],
+        ['start', 'qq'],
+        ['qq', 'qc'],
+        ['end', 'XI'],
+        ['qq', 'YN'],
+        ['ln', 'YN'],
+        ['end', 'wy'],
+        ['qc', 'nr'],
+        ['end', 'nr']
     ]
 });

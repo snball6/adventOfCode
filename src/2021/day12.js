@@ -37,10 +37,7 @@ function findPossiblePaths(input) {
 }
 
 function buildPaths(caveMap, currentNode, pathArray) {
-    console.log('currentNode:', currentNode);
-    console.log('pathArray:', pathArray);
     if (currentNode == 'end') {
-        console.log("END OF BRANCH");
         let pathForThisBranch = pathArray.slice();
         pathForThisBranch.push('end');
         //if next node is end return string
@@ -48,7 +45,6 @@ function buildPaths(caveMap, currentNode, pathArray) {
     } else {
         let previousVisits = pathArray.filter(path => path == currentNode).length;
         if (!isUpperCase(currentNode) && previousVisits >= 1) {
-            console.log("small cave - too many visits");
             //next node has been visited once - small cave
             return "No path";
         }
@@ -67,7 +63,6 @@ function buildPaths(caveMap, currentNode, pathArray) {
         }
     });
 
-    console.log("PATHS", paths);
     return paths;
 }
 
