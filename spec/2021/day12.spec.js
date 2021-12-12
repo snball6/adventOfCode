@@ -16,33 +16,21 @@ describe("day12", () => {
             expect(actual).toEqual({
                 'start': {
                     adjacent: ['A', 'b'],
-                    // visits: 0,
-                    // isBigCave: false
                 },
                 'A': {
-                    adjacent: ['start','c', 'b', 'end'],
-                    // visits: 0,
-                    // isBigCave: true
+                    adjacent: ['start', 'c', 'b', 'end'],
                 },
                 'b': {
-                    adjacent: ['start', 'A', 'd','end'],
-                    // visits: 0,
-                    // isBigCave: false
+                    adjacent: ['start', 'A', 'd', 'end'],
                 },
                 'c': {
                     adjacent: ['A'],
-                    // visits: 0,
-                    // isBigCave: false
                 },
                 'd': {
                     adjacent: ['b'],
-                    // visits: 0,
-                    // isBigCave: false
                 },
                 'end': {
                     adjacent: ['A', 'b'],
-                    // visits: 0,
-                    // isBigCave: false,
                 }
             }
 
@@ -62,19 +50,18 @@ describe("day12", () => {
             ]
 
             let actual = findPossiblePaths(sample);
+            expect(actual.length).toEqual(10);
+            expect(actual).toContain(['start', 'A', 'b', 'A', 'c', 'A', 'end']);
+            expect(actual).toContain(['start', 'A', 'c', 'A', 'b', 'A', 'end']);
 
-            expect(actual).toEqual([
-                ['start', 'A', 'b', 'A', 'c', 'A', 'end'],
-                ['start', 'A', 'b', 'A', 'end'],
-                ['start', 'A', 'b', 'end'],
-                ['start', 'A', 'c', 'A', 'b', 'A', 'end'],
-                ['start', 'A', 'c', 'A', 'b', 'end'],
-                ['start', 'A', 'c', 'A', 'end'],
-                ['start', 'A', 'end'],
-                ['start', 'b', 'A', 'c', 'A', 'end'],
-                ['start', 'b', 'A', 'end'],
-                ['start', 'b', 'end']
-            ]);
+            expect(actual).toContain(['start', 'A', 'b', 'A', 'end']);
+            expect(actual).toContain(['start', 'A', 'b', 'end']);
+            expect(actual).toContain(['start', 'A', 'c', 'A', 'b', 'end']);
+            expect(actual).toContain(['start', 'A', 'c', 'A', 'end']);
+            expect(actual).toContain(['start', 'A', 'end']);
+            expect(actual).toContain(['start', 'b', 'A', 'c', 'A', 'end']);
+            expect(actual).toContain(['start', 'b', 'A', 'end']);
+            expect(actual).toContain(['start', 'b', 'end']);
         });
 
     });

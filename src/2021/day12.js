@@ -28,7 +28,7 @@ function buildCaves(input) {
 }
 
 
-function findPossiblePaths(input){
+function findPossiblePaths(input) {
     let caveMap = buildCaves(input);
 
     let paths = buildPaths(caveMap, 'start', []);
@@ -36,42 +36,39 @@ function findPossiblePaths(input){
     return paths
 }
 
-function buildPaths(caveMap, currentNode, pathArray){
+function buildPaths(caveMap, currentNode, pathArray) {
     console.log('currentNode:', currentNode);
     console.log('pathArray:', pathArray);
-        if(currentNode == 'end'){
-            let pathForThisBranch = pathArray.slice();
-            pathForThisBranch.push('end');
-            //if next node is end return string
-            return pathForThisBranch;
-        } else {
-            let previousVisits = pathArray.filter(path => path==currentNode).length;
-            if(!isUpperCase(currentNode) && previousVisits >= 1 ){
-                console.log("small cave - too many visits");
-                //next node has been visited once - small cave
-                return "No path";
-            } else if(isUpperCase(currentNode) && previousVisits >= 2){
-                //next node has already been visited twice - big cave
-                console.log("big cave - too many visits");
-                return "No path";
-            };
+    if (currentNode == 'end') {
+        console.log("END OF BRANCH");
+        let pathForThisBranch = pathArray.slice();
+        pathForThisBranch.push('end');
+        //if next node is end return string
+        return [pathForThisBranch];
+    } else {
+        let previousVisits = pathArray.filter(path => path == currentNode).length;
+        if (!isUpperCase(currentNode) && previousVisits >= 1) {
+            console.log("small cave - too many visits");
+            //next node has been visited once - small cave
+            return "No path";
         }
+    }
 
-        //for each adjacent build a path
-        let paths = [''];
+    //for each adjacent build a path
+    let paths = [];
 
-        caveMap[currentNode].adjacent.forEach(nextNode => {
-            let pathForThisBranch = pathArray.slice();
-            pathForThisBranch.push(currentNode);
-            let tempPath = buildPaths(caveMap, nextNode, pathForThisBranch);
+    caveMap[currentNode].adjacent.forEach(nextNode => {
+        let pathForThisBranch = pathArray.slice();
+        pathForThisBranch.push(currentNode);
+        let tempPath = buildPaths(caveMap, nextNode, pathForThisBranch);
 
-            if(tempPath != "No path"){
-                paths.push(tempPath);
-            }
-        });
+        if (tempPath != "No path") {
+            paths = paths.concat(tempPath);
+        }
+    });
 
-        console.log(paths);
-        return paths;
+    console.log("PATHS", paths);
+    return paths;
 }
 
 
