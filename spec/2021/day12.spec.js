@@ -16,33 +16,33 @@ describe("day12", () => {
             expect(actual).toEqual({
                 'start': {
                     adjacent: ['A', 'b'],
-                    visits: 0,
-                    isBigCave: false
+                    // visits: 0,
+                    // isBigCave: false
                 },
                 'A': {
                     adjacent: ['start','c', 'b', 'end'],
-                    visits: 0,
-                    isBigCave: true
+                    // visits: 0,
+                    // isBigCave: true
                 },
                 'b': {
                     adjacent: ['start', 'A', 'd','end'],
-                    visits: 0,
-                    isBigCave: false
+                    // visits: 0,
+                    // isBigCave: false
                 },
                 'c': {
                     adjacent: ['A'],
-                    visits: 0,
-                    isBigCave: false
+                    // visits: 0,
+                    // isBigCave: false
                 },
                 'd': {
                     adjacent: ['b'],
-                    visits: 0,
-                    isBigCave: false
+                    // visits: 0,
+                    // isBigCave: false
                 },
                 'end': {
                     adjacent: ['A', 'b'],
-                    visits: 0,
-                    isBigCave: false,
+                    // visits: 0,
+                    // isBigCave: false,
                 }
             }
 
