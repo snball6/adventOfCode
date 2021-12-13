@@ -50,14 +50,14 @@ function foldAndCount(dots, folds) {
     return Object.keys(tempMap).length;
 }
 
-function createVisual(dots, folds) {
+function createFinalOutputVisual(dots, folds) {
     let map = buildDictionary(dots);
 
 
     let tempMap = {};
 
     for (let i = 0; i < folds.length; i++) {
-
+        let tempMap = {};
         let fold = folds[i].split("=");
 
         if (fold[0] == 'y') {
@@ -68,7 +68,6 @@ function createVisual(dots, folds) {
                 let y = parseInt(split[1]);
                 if (y > foldRow) {
                     let yTranslate = (y - foldRow) * 2
-                    //make new map because I'm suspicious how modifying the map I'm itterating over will go...
                     let newY = y - yTranslate;
                     tempMap[x + ',' + newY] = '#';
                 } else {
@@ -93,7 +92,6 @@ function createVisual(dots, folds) {
         map = tempMap;
     }
 
-    console.log(createImage(map));
     return createImage(map);
 }
 
@@ -125,13 +123,16 @@ function createImage(map){
     }
 
     for (key in map) {
-        console.log("Hello?");
         let split = key.split(",");
         let x = parseInt(split[0]);
         let y = parseInt(split[1]);
-        console.log(array[x][y]);
         array[x][y] = "#";
     }
 
-    return array;
+    //flatten array
+    let flattenedArray = []
+    array.forEach(row => {
+        flattenedArray.push(row.join(""));
+    });
+    return flattenedArray;
 }
