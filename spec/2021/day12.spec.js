@@ -76,7 +76,6 @@ describe("day12", () => {
     describe("Part 2", () => {
         it('should map possible paths in new way_small sample', () => {
             let actual = findPossiblePathsPart2(smallSample);
-            console.log(actual);
             expect(actual.length).toEqual(36);
         });
 
@@ -94,7 +93,7 @@ describe("day12", () => {
 
         it('should map possible_puzzleInput', () => {
             let actual = findPossiblePathsPart2(puzzleInput);
-            expect(actual.length).toEqual(4773);
+            expect(actual.length).toEqual(116985);
         });
     });
 
