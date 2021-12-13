@@ -33,7 +33,17 @@ fdescribe("day13", () => {
 
     });
     describe("Part 2", () => {
-
+        it('should create visual of final state_sample input', () => {
+            expect(createVisual(sampleDots, sampleFolds)).toEqual([
+                '#####',
+                '#...#',
+                '#...#',
+                '#...#',
+                '#####',
+                '.....',
+                '.....',
+            ]);
+        });
     });
 
     let sampleDots = [
