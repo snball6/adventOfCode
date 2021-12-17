@@ -1,4 +1,4 @@
-fdescribe("day14", () => {
+describe("day14", () => {
     describe("Part 1", () => {
         it('should insert between letters_sampleInput', () => {
             //step 1
