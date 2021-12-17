@@ -1,9 +1,8 @@
-// let tiny = [
-//     '116',
-//     '138',
-//     '213'
-// ]
+let globalMinSoFar;
+
 function findLowestRiskPath(stringArray) {
+    globalMinSoFar = undefined; //arbitrarily large starting value
+
     let tree = buildTree(stringArray);
     let endPoint = (stringArray[0].length -1) + ',' + (stringArray.length -1);
     let paths = traverseTree(tree, [], 0, '0,0', endPoint);
@@ -11,13 +10,13 @@ function findLowestRiskPath(stringArray) {
     let minimum = paths[0].riskValue; //start value
     let minPath = paths[0].path;
 
+    console.log(paths);
     paths.forEach(path => {
         if (path.riskValue < minimum) {
             minimum = path.riskValue;
             minPath = path.path;
         }
     });
-    console.log(minPath);
     return minimum;
 }
 
@@ -31,8 +30,17 @@ function traverseTree(tree, path, total, nextNode, endPoint) {
     if (nextNode != '0,0') {
         total += tree[nextNode].value;
     }
+    //stop the tree early if it is already larger than the previously mapped min
+    if(globalMinSoFar && total > globalMinSoFar){
+        // console.log("early termination");
+        return [];
+    }
 
     if (nextNode == endPoint) {
+        if(!globalMinSoFar || total<globalMinSoFar){
+            globalMinSoFar = total;
+        }
+
         //end of path and returns single element
         return [{
             path: newPath,
@@ -72,7 +80,7 @@ function buildTree(stringArray) {
             // if (notTopRow(y)) {
             //     adjacentNodes.push(x + ',' + (y - 1));
             // }
-            
+
             nodes[x + ',' + y] = {
                 value: parseInt(stringArray[y][x]),
                 adjacent: adjacentNodes

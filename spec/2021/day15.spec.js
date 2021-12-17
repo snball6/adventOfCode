@@ -13,6 +13,10 @@ fdescribe("day15", () => {
             expect(findLowestRiskPath(sampleInput)).toEqual(40);
         });
 
+        // it("should find lowest risk path_puzzleInput", () => {
+        //     expect(findLowestRiskPath(puzzleInput)).toEqual(40);
+        // });
+
     });
     describe("Part 2", () => {
 
