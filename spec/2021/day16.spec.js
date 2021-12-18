@@ -1,4 +1,4 @@
-xdescribe("day16", () => {
+fdescribe("day16", () => {
     describe("Part 1", () => {
         it('should convert hex to binary', () => {
             expect(convertHexToBinary("D2FE28")).toEqual("110100101111111000101000");
@@ -8,13 +8,46 @@ xdescribe("day16", () => {
             expect(convertBinaryToDec("100")).toEqual(4);
         });
 
-        it('should parse a literal value', () => {
-            expect(parseHex("D2FE28")).toEqual({
+        it('should parse a literal', () => {
+            //110  100  101111111000101000
+            expect(literalCalculation("101111111000101000")).toEqual(2021);
+        });
+
+        it('should parse a literal packet', () => {
+            expect(parseBinaryToPackets("110100101111111000101000")).toEqual([{
                 version: 6,
                 packetType: 4,
-                binaryRep: '011111100101',
-                decimal: 2021
-            })
+                value: 2021
+            }]);
+
+        });
+
+        fit('should parse a operator packet', () => {
+            expect(parseBinaryToPackets("00111000000000000110111101000101001010010001001000000000")).toEqual([{
+                version: 1,
+                packetType: 6,
+                subPackets: [
+                    {
+                        version: 6,
+                        packetType: 4,
+                        value: 10
+                    },
+                    {
+                        version: 2,
+                        packetType: 4,
+                        value: 20
+                    }
+                ]
+            }]);
+
+        });
+
+        xit('should total version numbers_sample data', () => {
+            expect(totalVersionNumbers("38006F45291200")).toEqual(1 + 6 + 2);
+            // expect(totalVersionNumbers("8A004A801A8002F478")).toEqual(16);
+            // expect(totalVersionNumbers("620080001611562C8802118E34")).toEqual(12);
+            // expect(totalVersionNumbers("C0015000016115A2E0802F182340")).toEqual(23);
+            // expect(totalVersionNumbers("A0016C880162017C3686B18A3D4780")).toEqual(31);
         });
     });
     describe("Part 2", () => {

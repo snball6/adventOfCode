@@ -1,4 +1,4 @@
-fdescribe("day15", () => {
+describe("day15", () => {
     describe("Part 1", () => {
         it("should find lowest risk path_tinySample", () => {
             let tiny = [
