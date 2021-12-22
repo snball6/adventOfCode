@@ -1,4 +1,4 @@
-fdescribe("day16", () => {
+xdescribe("day16", () => {
     describe("Part 1", () => {
         it('should convert hex to binary', () => {
             expect(convertHexToBinary("D2FE28")).toEqual("110100101111111000101000");
@@ -22,7 +22,7 @@ fdescribe("day16", () => {
 
         });
 
-        fit('should parse a operator packet', () => {
+        it('should parse a operator packet', () => {
             expect(parseBinaryToPackets("00111000000000000110111101000101001010010001001000000000")).toEqual([{
                 version: 1,
                 packetType: 6,
