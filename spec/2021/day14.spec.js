@@ -1,4 +1,4 @@
-describe("day14", () => {
+fdescribe("day14", () => {
     describe("Part 1", () => {
         it('should insert between letters_sampleInput', () => {
             //step 1
@@ -26,7 +26,14 @@ describe("day14", () => {
 
     });
     describe("Part 2", () => {
+        it('should do the same thing but linked list data structure..._puzzleInput', () => {
+            expect(take10StepsAndCalculate_Linked(sampleStart, sampleInput)).toEqual(1588);
+            //it still cannot make is to 40 though. Dies by 23
+        });
 
+        it('should do the same thing but weird giant array data structure..._puzzleInput', () => {
+            expect(take10StepsAndCalculate_WeirdArray(sampleStart, sampleInput)).toEqual(1588);
+        });
     });
     let sampleStart = 'NNCB';
     let sampleInput = {

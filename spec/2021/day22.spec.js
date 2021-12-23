@@ -1,4 +1,4 @@
-fdescribe("day22", () => {
+describe("day22", () => {
    describe("Part 1", () => {
       it('should return list of cubes in cuboid', () => {
          expect(getCubesInCuboid({
@@ -106,7 +106,7 @@ fdescribe("day22", () => {
       });
 
       it('should return number of cuboids left part1PuzzleInput', () => {
-         expect(getCuboidsLeftOn(part1PuzzleInput)).toEqual(39);
+         expect(getCuboidsLeftOn(part1PuzzleInput)).toEqual(543306);
       });
    });
    describe("Part 2", () => {
