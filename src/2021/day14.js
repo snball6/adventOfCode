@@ -48,10 +48,10 @@ function take10StepsAndCalculate(startValue, map) {
 //-----------------------------------part 2 attempt 1---------------------------//
 
 function take10StepsAndCalculate_Linked(startValue, map) {
-    let polymerCounts = {}   
+    let polymerCounts = {}
 
     let headNode = null;
-    for (let i = startValue.length-1; i >= 0; i--) {
+    for (let i = startValue.length - 1; i >= 0; i--) {
         addOrUpdate(polymerCounts, startValue[i]);
         headNode = new ListNode(startValue[i], headNode);
     }
@@ -104,54 +104,90 @@ function getMostCommonMinusLeastCommonFromDictionary(dictionary) {
 //how dumb would it be to make a 2d array of 2 maxed lengths...
 
 function take10StepsAndCalculate_WeirdArray(startValue, map) {
-    let polymerCounts = {}   
+    let polymerCounts = {}
 
-    let megaArray = new MegaArray();
-    for (let i = startValue.length-1; i >= 0; i--) {
+    let currentArray = new MegaArray();
+    for (let i = 0; i < startValue.length; i++) {
         addOrUpdate(polymerCounts, startValue[i]);
-        megaArray.push(startValue[i]);
+        currentArray.push(startValue[i]);
     }
-    console.log(megaArray);
 
     for (let i = 0; i < 10; i++) {
-
-        // for (let i = 0; i < startValue.length - 1; i++) {
-        //     newValue += startValue[i];
-        //     pair = startValue[i] + startValue[i + 1];
+        let polymerToInsert;
+        let nextArray = new MegaArray();
+        let a = currentArray.next();
+        let b = currentArray.next();
+        // let now = new Date();
+        // console.log(i + "\t" + now.getMinutes() + '\t' + now.getSeconds());
+        while(b!=undefined){
+            polymerToInsert = map[a + b];
     
-        //     let mapValue = map[pair];
-        //     newValue += mapValue;
-        // }
-        // newValue += startValue[startValue.length - 1];
+            addOrUpdate(polymerCounts, polymerToInsert);
+            nextArray.push(a);
+            nextArray.push(polymerToInsert);
+            a = b;
+            b = currentArray.next();
+        }
+        nextArray.push(a);
+        currentArray = nextArray;
+    }
+    return (getMostCommonMinusLeastCommonFromDictionary(polymerCounts));
+}
 
+function take40StepsAndCalculate_WeirdArray(startValue, map) {
+    let polymerCounts = {}
+
+    let currentArray = new MegaArray();
+    for (let i = 0; i < startValue.length; i++) {
+        addOrUpdate(polymerCounts, startValue[i]);
+        currentArray.push(startValue[i]);
     }
 
+    for (let i = 0; i < 40; i++) {
+        let polymerToInsert;
+        let nextArray = new MegaArray();
+        let a = currentArray.next();
+        let b = currentArray.next();
+        let now = new Date();
+        console.log(i + "\t" + now.getMinutes() + '\t' + now.getSeconds());
+        while(b!=undefined){
+            polymerToInsert = map[a + b];
+    
+            addOrUpdate(polymerCounts, polymerToInsert);
+            nextArray.push(a);
+            nextArray.push(polymerToInsert);
+            a = b;
+            b = currentArray.next();
+        }
+        nextArray.push(a);
+        currentArray = nextArray;
+    }
     return (getMostCommonMinusLeastCommonFromDictionary(polymerCounts));
 }
 
 class MegaArray {
-    constructor(){
+    constructor() {
         this.currentArrayLength = 0;
         this.arraysFilled = 0;
-        this.backingArray=[[]];
+        this.backingArray = [[]];
         this.pointer = 0;
         this.arrayPointer = 0;
     }
 
-    push(element){
+    push(element) {
         this.backingArray[this.arraysFilled].push(element);
         this.currentArrayLength++;
-        if(this.currentArrayLength == 5){ //4100000000
+        if (this.currentArrayLength == 4100000000) { //4100000000
             this.arraysFilled++;
             this.backingArray.push([]);
             this.currentArrayLength = 0; //reset
         }
     }
 
-    next(){
-        let value = this.backingArray[this.arrayPointer][pointer];
+    next() {
+        let value = this.backingArray[this.arrayPointer][this.pointer];
         this.pointer++;
-        if(this.pointer == 5){
+        if (this.pointer == 4100000000) {
             this.arrayPointer++;
             this.pointer = 0;
         }

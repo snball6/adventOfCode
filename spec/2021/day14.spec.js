@@ -27,13 +27,16 @@ fdescribe("day14", () => {
     });
     describe("Part 2", () => {
         it('should do the same thing but linked list data structure..._puzzleInput', () => {
+            //original implementation died after 22
             expect(take10StepsAndCalculate_Linked(sampleStart, sampleInput)).toEqual(1588);
             //it still cannot make is to 40 though. Dies by 23
         });
 
         it('should do the same thing but weird giant array data structure..._puzzleInput', () => {
             expect(take10StepsAndCalculate_WeirdArray(sampleStart, sampleInput)).toEqual(1588);
+            //it died after 25
         });
+
     });
     let sampleStart = 'NNCB';
     let sampleInput = {
