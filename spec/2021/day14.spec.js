@@ -26,17 +26,27 @@ fdescribe("day14", () => {
 
     });
     describe("Part 2", () => {
-        it('should do the same thing but linked list data structure..._puzzleInput', () => {
+        it('should do the same thing but linked list data structure..._sampleInput', () => {
             //original implementation died after 22
             expect(take10StepsAndCalculate_Linked(sampleStart, sampleInput)).toEqual(1588);
             //it still cannot make is to 40 though. Dies by 23
         });
 
-        it('should do the same thing but weird giant array data structure..._puzzleInput', () => {
+        it('should do the same thing but weird giant array data structure..._sampleInput', () => {
             expect(take10StepsAndCalculate_WeirdArray(sampleStart, sampleInput)).toEqual(1588);
             //it died after 25
         });
 
+        it('should try buckets this time..._sampleInput', () => {
+            expect(take10StepsAndCalculate_Buckets(sampleStart, sampleInput)).toEqual(1588);
+        });
+
+        it('should try buckets this time for _sampleInput', () => {
+            expect(take40StepsAndCalculate_Buckets(sampleStart, sampleInput)).toEqual(2188189693529);
+        });
+        it('should try buckets this time for 40_puzzleInput', () => {
+            expect(take40StepsAndCalculate_Buckets(puzzleStart, puzzleInput)).toEqual(2188189693529);
+        });
     });
     let sampleStart = 'NNCB';
     let sampleInput = {

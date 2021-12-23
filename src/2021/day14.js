@@ -82,9 +82,11 @@ class ListNode {
 }
 
 function getMostCommonMinusLeastCommonFromDictionary(dictionary) {
-    //arbitrary starting values
     let most = ['Initial', 0];
-    let least = ['Initial', 99999];
+    //pick a item from the array to initialize the least value so I don't keep being burned by not picking a big enough starting value...
+    let starterKey = Object.keys(dictionary)[0]
+    let starterValue = dictionary[starterKey]
+    let least = [starterKey, starterValue];
     for (key in dictionary) {
         if (dictionary[key] > most[1]) {
             most = [key, dictionary[key]];
@@ -119,40 +121,9 @@ function take10StepsAndCalculate_WeirdArray(startValue, map) {
         let b = currentArray.next();
         // let now = new Date();
         // console.log(i + "\t" + now.getMinutes() + '\t' + now.getSeconds());
-        while(b!=undefined){
+        while (b != undefined) {
             polymerToInsert = map[a + b];
-    
-            addOrUpdate(polymerCounts, polymerToInsert);
-            nextArray.push(a);
-            nextArray.push(polymerToInsert);
-            a = b;
-            b = currentArray.next();
-        }
-        nextArray.push(a);
-        currentArray = nextArray;
-    }
-    return (getMostCommonMinusLeastCommonFromDictionary(polymerCounts));
-}
 
-function take40StepsAndCalculate_WeirdArray(startValue, map) {
-    let polymerCounts = {}
-
-    let currentArray = new MegaArray();
-    for (let i = 0; i < startValue.length; i++) {
-        addOrUpdate(polymerCounts, startValue[i]);
-        currentArray.push(startValue[i]);
-    }
-
-    for (let i = 0; i < 40; i++) {
-        let polymerToInsert;
-        let nextArray = new MegaArray();
-        let a = currentArray.next();
-        let b = currentArray.next();
-        let now = new Date();
-        console.log(i + "\t" + now.getMinutes() + '\t' + now.getSeconds());
-        while(b!=undefined){
-            polymerToInsert = map[a + b];
-    
             addOrUpdate(polymerCounts, polymerToInsert);
             nextArray.push(a);
             nextArray.push(polymerToInsert);
@@ -193,4 +164,74 @@ class MegaArray {
         }
         return value;
     }
+}
+
+//------------------------------------how about that buckets idea like with the fish?---------------
+
+function take10StepsAndCalculate_Buckets(startValue, map) {
+    let totalPolymerCounts = {}
+
+    let currentPairCounts = {}
+    for (let i = 0; i < startValue.length - 1; i++) {
+        addOrIncrease(totalPolymerCounts, startValue[i], 1);
+
+        let pair = startValue[i] + startValue[i + 1];
+        addOrIncrease(currentPairCounts, pair, 1);
+    }
+    addOrIncrease(totalPolymerCounts, startValue[startValue.length-1], 1); //the very last element needs ot be added to the counts
+
+    for (let i = 0; i < 10; i++) {
+
+        let nextPairCounts = {}
+        for (key in currentPairCounts) {
+            let first = key[0];
+            let second = key[1];
+            let polymerToAdd = map[key];
+            let occurences = currentPairCounts[key]
+            addOrIncrease(totalPolymerCounts, polymerToAdd, occurences);
+            addOrIncrease(nextPairCounts, first + polymerToAdd, occurences);
+            addOrIncrease(nextPairCounts, polymerToAdd + second, occurences);
+        }
+        currentPairCounts = nextPairCounts
+    }
+    return (getMostCommonMinusLeastCommonFromDictionary(totalPolymerCounts));
+}
+
+function addOrIncrease(dictionary, key, amount) {
+    if (key in dictionary) {
+        dictionary[key] += amount;
+    } else {
+        dictionary[key] = amount;
+    }
+}
+
+function take40StepsAndCalculate_Buckets(startValue, map) {
+    let totalPolymerCounts = {}
+
+    let currentPairCounts = {}
+    for (let i = 0; i < startValue.length - 1; i++) {
+        addOrIncrease(totalPolymerCounts, startValue[i], 1);
+
+        let pair = startValue[i] + startValue[i + 1];
+        addOrIncrease(currentPairCounts, pair, 1);
+    }
+    addOrIncrease(totalPolymerCounts, startValue[startValue.length-1], 1); //the very last element needs ot be added to the counts
+
+    for (let i = 0; i < 40; i++) {
+        let now = new Date();
+        console.log(i + "\t" + now.getMinutes() + '\t' + now.getSeconds());
+        let nextPairCounts = {}
+        for (key in currentPairCounts) {
+            let first = key[0];
+            let second = key[1];
+            let polymerToAdd = map[key];
+            let occurences = currentPairCounts[key]
+            addOrIncrease(totalPolymerCounts, polymerToAdd, occurences);
+            addOrIncrease(nextPairCounts, first + polymerToAdd, occurences);
+            addOrIncrease(nextPairCounts, polymerToAdd + second, occurences);
+        }
+        currentPairCounts = nextPairCounts
+    }
+    console.log(totalPolymerCounts);
+    return (getMostCommonMinusLeastCommonFromDictionary(totalPolymerCounts));
 }
