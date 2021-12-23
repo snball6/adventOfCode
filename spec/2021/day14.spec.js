@@ -38,14 +38,14 @@ fdescribe("day14", () => {
         });
 
         it('should try buckets this time..._sampleInput', () => {
-            expect(take10StepsAndCalculate_Buckets(sampleStart, sampleInput)).toEqual(1588);
+            expect(takeStepsAndCalculate_Buckets(sampleStart, sampleInput, 10)).toEqual(1588);
         });
 
         it('should try buckets this time for _sampleInput', () => {
-            expect(take40StepsAndCalculate_Buckets(sampleStart, sampleInput)).toEqual(2188189693529);
+            expect(takeStepsAndCalculate_Buckets(sampleStart, sampleInput, 40)).toEqual(2188189693529);
         });
         it('should try buckets this time for 40_puzzleInput', () => {
-            expect(take40StepsAndCalculate_Buckets(puzzleStart, puzzleInput)).toEqual(2188189693529);
+            expect(takeStepsAndCalculate_Buckets(puzzleStart, puzzleInput,40)).toEqual(3232426226464);
         });
     });
     let sampleStart = 'NNCB';
