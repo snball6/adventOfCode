@@ -58,7 +58,6 @@ function take10StepsAndCalculate_Linked(startValue, map) {
 
     for (let i = 0; i < 10; i++) {
         let now = new Date();
-        console.log(i + "\t" + now.getMinutes() + '\t' + now.getSeconds());
         let currentNode = headNode;
         let tempNextNode;
         let polymerToInsert;

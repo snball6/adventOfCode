@@ -8,41 +8,22 @@ xdescribe("day16", () => {
             expect(convertBinaryToDec("100")).toEqual(4);
         });
 
-        it('should parse a literal', () => {
-            //110  100  101111111000101000
-            expect(literalCalculation("101111111000101000")).toEqual(2021);
-        });
+        // it('should parse a literal', () => {
+        //     //110  100  101111111000101000
+        //     expect(literalCalculation("101111111000101000")).toEqual(2021);
+        // });
 
-        it('should parse a literal packet', () => {
-            expect(parseBinaryToPackets("110100101111111000101000")).toEqual([{
-                version: 6,
-                packetType: 4,
-                value: 2021
-            }]);
+        // it('should parse a literal packet', () => {
+        //     expect(parseBinaryToPackets("110100101111111000101000")).toEqual([{
+        //         version: 6,
+        //         packetType: 4,
+        //         value: 2021
+        //     }]);
 
-        });
+        // });
 
-        it('should parse a operator packet', () => {
-            expect(parseBinaryToPackets("00111000000000000110111101000101001010010001001000000000")).toEqual([{
-                version: 1,
-                packetType: 6,
-                subPackets: [
-                    {
-                        version: 6,
-                        packetType: 4,
-                        value: 10
-                    },
-                    {
-                        version: 2,
-                        packetType: 4,
-                        value: 20
-                    }
-                ]
-            }]);
-
-        });
-
-        xit('should total version numbers_sample data', () => {
+        it('should total version numbers_sample data', () => {
+            expect(totalVersionNumbers("D2FE28")).toEqual(1 + 6 + 2);
             expect(totalVersionNumbers("38006F45291200")).toEqual(1 + 6 + 2);
             // expect(totalVersionNumbers("8A004A801A8002F478")).toEqual(16);
             // expect(totalVersionNumbers("620080001611562C8802118E34")).toEqual(12);
