@@ -181,3 +181,20 @@ function calculateMagnitude(snailNumber) {
         return magReduced[0];
     }
 }
+
+function findLargestMagnitude(snailNumbers){
+    let max = 0;
+    for(let i = 0; i< snailNumbers.length; i++){
+        for(let j=0; j< snailNumbers.length; j++){
+            //cannot add same number to itself
+            if(i!=j){
+                let sum = addSnailNumbers([snailNumbers[i], snailNumbers[j]]);
+                let magnitude = calculateMagnitude(stringToStringIntArray(sum));
+                if(magnitude > max){
+                    max = magnitude;
+                }
+            }
+        }
+    }
+    return max;
+}
