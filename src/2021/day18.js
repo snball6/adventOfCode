@@ -55,6 +55,9 @@ function explode(snailNumber) {
 
 function split(snailNumber) {
     let index = 0;
+
+    let pairReplaced = [];
+    outside1:
     while (index < snailNumber.length) {
         switch (snailNumber[index]) {
             case "[":
@@ -64,18 +67,117 @@ function split(snailNumber) {
             default:
                 let number = parseInt(snailNumber[index]);
                 if (number >= 10) {
-
+                    const beforeNum = snailNumber.slice(0, index);
+                    const afterNum = snailNumber.slice(index + 1);
+                    pairReplaced = beforeNum.concat(createSplitPair(number)).concat(afterNum);
+                    break outside1;
                 }
         }
         index++;
     }
+    return pairReplaced;
 }
 
 function createSplitPair(number) {
     return ['[',
-        Math.ceil(number / 2)
-        , ',',
         Math.floor(number / 2)
+        , ',',
+        Math.ceil(number / 2)
         , ']'
     ]
+}
+
+function stringToStringIntArray(snailNumber) {
+    let index = 0;
+
+    let numArray = [];
+    while (index < snailNumber.length) {
+        switch (snailNumber[index]) {
+            case "[":
+            case "]":
+            case ",":
+                numArray.push(snailNumber[index]);
+                break;
+            default:
+                numArray.push(parseInt(snailNumber[index]));
+                break;
+        }
+        index++;
+    }
+    return numArray;
+}
+
+function addSnailNumbers(stringArray) {
+    let sum = stringToStringIntArray(stringArray[0]);
+    for (let i = 1; i < stringArray.length; i++) {
+        let intParsed = stringToStringIntArray(stringArray[i]);
+        sum = ['['].concat(sum).concat([',']).concat(intParsed).concat([']']);
+        sum = reduce(sum);
+    }
+    return sum.join("");
+}
+
+function reduce(sum) {
+    let needsExplosion = false;
+    let needsSplit = false;
+    let leftBracketCount = 0;
+    for (let i = 0; i < sum.length; i++) {
+        switch (sum[i]) {
+            case "[":
+                leftBracketCount++;
+                if (leftBracketCount > 4) {
+                    needsExplosion = true;
+                }
+                break;
+            case "]":
+                leftBracketCount--;
+                break;
+            case ",":
+                break;
+            default:
+                if (sum[i] > 9) {
+                    needsSplit = true;
+                }
+                break;
+        }
+    }
+
+    if (needsExplosion) {
+        sum = explode(sum);
+        return reduce(sum);
+    } else if (needsSplit) {
+        sum = split(sum);
+        return reduce(sum);
+    } else {
+        return sum;
+    }
+}
+
+function calculateMagnitude(snailNumber) {
+    let magReduced = [];
+
+    outerbreak:
+    for (let i = 0; i < snailNumber.length; i++) {
+        switch (snailNumber[i]) {
+            case "[":
+            case "]":
+                break;
+            case ",":
+                if (Number.isInteger(snailNumber[i - 1])
+                    && Number.isInteger(snailNumber[i + 1])) {
+
+                    let magnitude = snailNumber[i - 1] * 3 + snailNumber[i + 1] * 2;
+                    magReduced = snailNumber.slice(0, i - 2).concat([magnitude]).concat(snailNumber.slice(i + 3));
+                    break outerbreak;
+                }
+            default:
+                break;
+        }
+    }
+
+    if (magReduced.includes(',')) {
+        return calculateMagnitude(magReduced);
+    } else {
+        return magReduced[0];
+    }
 }
