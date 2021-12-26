@@ -1,4 +1,4 @@
-xdescribe("day15", () => {
+fdescribe("day15", () => {
     describe("Part 1", () => {
         it("should find lowest risk path_tinySample", () => {
             let tiny = [
@@ -13,9 +13,9 @@ xdescribe("day15", () => {
             expect(findLowestRiskPath(sampleInput)).toEqual(40);
         });
 
-        // it("should find lowest risk path_puzzleInput", () => {
-        //     expect(findLowestRiskPath(puzzleInput)).toEqual(40);
-        // });
+        it("should find lowest risk path_puzzleInput", () => {
+            expect(findLowestRiskPath(puzzleInput)).toEqual(40);
+        });
 
     });
     describe("Part 2", () => {

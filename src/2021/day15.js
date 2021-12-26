@@ -1,108 +1,32 @@
-let globalMinSoFar;
+// https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
+// https://briangrinstead.com/blog/astar-search-algorithm-in-javascript/
+// https://gist.github.com/bgrins/581352
 
-function findLowestRiskPath(stringArray) {
-    globalMinSoFar = undefined; //arbitrarily large starting value
-
-    let tree = buildTree(stringArray);
-    let endPoint = (stringArray[0].length -1) + ',' + (stringArray.length -1);
-    let paths = traverseTree(tree, [], 0, '0,0', endPoint);
-
-    let minimum = paths[0].riskValue; //start value
-    let minPath = paths[0].path;
-
-    console.log(paths);
-    paths.forEach(path => {
-        if (path.riskValue < minimum) {
-            minimum = path.riskValue;
-            minPath = path.path;
+function findLowestRiskPath(grid) {
+    let width = grid[0].length;
+    let height = grid.length; 
+    let intGrid = [];
+    for (let y = 0; y < height; y++) {
+        let row = [];
+        for (let x = 0; x < width; x++) {
+            row.push(parseInt(grid[y][x]));
         }
-    });
-    return minimum;
-}
-
-function traverseTree(tree, path, total, nextNode, endPoint) {
-    // console.log("-----------------");
-    // console.log('path', path);
-    // console.log('total', total);
-    // console.log('nextNode', nextNode);
-    let newPath = path.slice(0);
-    newPath.push(nextNode);
-    if (nextNode != '0,0') {
-        total += tree[nextNode].value;
-    }
-    //stop the tree early if it is already larger than the previously mapped min
-    if(globalMinSoFar && total > globalMinSoFar){
-        // console.log("early termination");
-        return [];
+        intGrid.push(row);
     }
 
-    if (nextNode == endPoint) {
-        if(!globalMinSoFar || total<globalMinSoFar){
-            globalMinSoFar = total;
-        }
+    //Using an opensource A* search for search
+    let graph = new Graph(intGrid);
+    let start = graph.grid[0][0];
+    let end = graph.grid[height-1][width-1]; //zero index adjustment
 
-        //end of path and returns single element
-        return [{
-            path: newPath,
-            riskValue: total
-        }]
+    let lowestWeightPath = astar.search(graph, start, end);
+    return getWeight(lowestWeightPath);
+}
+
+function getWeight(path){
+    let total = 0;
+    for(let node = 0; node<path.length; node++){
+        total+=path[node].weight;
     }
-
-    let adjacent = tree[nextNode].adjacent.filter(node => !newPath.includes(node)); //adjacent items not already visited
-    let pathsRecursed = [];
-    adjacent.forEach(node => {
-        //not end of path and keeps going to find the rest
-        let nextLevelPaths = traverseTree(tree, newPath, total, node, endPoint);
-        pathsRecursed = pathsRecursed.concat(nextLevelPaths);
-    });
-
-    //if no adjacent items, never entered forEach and returns an empty array
-    return pathsRecursed;
-
-}
-
-function buildTree(stringArray) {
-    let nodes = {}
-
-    for (let y = 0; y < stringArray.length; y++) {
-        for (let x = 0; x < stringArray[0].length; x++) {
-            let adjacentNodes = []
-            if (notBottomRow(y, stringArray)) {
-                adjacentNodes.push(x + ',' + (y + 1));
-            }
-            if (notRightEdge(x, stringArray)) {
-                adjacentNodes.push((x + 1) + ',' + y);
-            }
-            //I'm hoping I'm safe to only check moving down and right since it SIGNIFICANTLY increases this search, but we'll see 
-            // if (notLeftEdge(x)) {
-            //     adjacentNodes.push((x - 1) + ',' + y);
-            // }
-            // if (notTopRow(y)) {
-            //     adjacentNodes.push(x + ',' + (y - 1));
-            // }
-
-            nodes[x + ',' + y] = {
-                value: parseInt(stringArray[y][x]),
-                adjacent: adjacentNodes
-            }
-        }
-    }
-    return nodes;
-}
-
-//reuse and adapt from day 9
-function notTopRow(y) {
-    return y != 0;
-}
-
-function notLeftEdge(x) {
-    return x != 0;
-}
-
-function notRightEdge(x, input) {
-    return x != input[0].length - 1;
-}
-
-function notBottomRow(y, input) {
-    return y != input.length - 1;
+    return total;
 }
