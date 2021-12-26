@@ -1,4 +1,4 @@
-describe("day20", () => {
+fdescribe("day20", () => {
     describe("Part 1", () => {
         describe("helperImage class", () => {
             it('should create image with helper for safely getting coordinates', () => {
@@ -39,7 +39,7 @@ describe("day20", () => {
 
         it('should enhance and count the number of lights_sample input', () => {
             expect(countLit(sampleAlgorithm, sampleImage, 1, false)).toEqual(24);
-            expect(countLit(sampleAlgorithm, sampleImage, 2,false)).toEqual(35);
+            expect(countLit(sampleAlgorithm, sampleImage, 2, false)).toEqual(35);
         });
 
         describe("the big catch that the sample data does not demonstrate", () => {
@@ -58,7 +58,15 @@ describe("day20", () => {
             //5249 is just right - once I handle the infinite light flash
             expect(countLit(puzzleAlgorithm, puzzleImage, 2, true)).toEqual(5249);
         });
+    });
 
+    describe("part 2", () => {
+        it('should enhance and count the number of lights_sample input', () => {
+            expect(countLit(sampleAlgorithm, sampleImage, 50, false)).toEqual(3351);
+        });
+        it('should enhance and count the number of lights_puzzle input', () => {
+            expect(countLit(puzzleAlgorithm, puzzleImage, 50, true)).toEqual(15714);
+        });
     });
 
     let sampleAlgorithm = '..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..##' +
