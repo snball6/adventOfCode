@@ -1,5 +1,7 @@
 class HelperImage {
     constructor(stringArray) {
+        this.infiniteSpaceFiller = '.';
+        this.lit = 0;
         this.pixels = {};
 
         this.minY = 0;
@@ -10,6 +12,9 @@ class HelperImage {
         for (let y = 0; y < this.maxY; y++) {
             for (let x = 0; x < this.maxX; x++) {
                 this.pixels[y + ',' + x] = stringArray[y][x];
+                if(stringArray[y][x]=='#'){
+                    this.lit++;
+                }
             }
         }
     }
@@ -17,13 +22,16 @@ class HelperImage {
     get(y, x) {
         let value = this.pixels[y + ',' + x];
         if (value == undefined) {
-            return '.';
+            return this.infiniteSpaceFiller;
         } else {
             return value;
         }
     }
 
     set(y, x, value) {
+        if(value=='#'){
+            this.lit++;
+        }
         this.pixels[y + ',' + x] = value;
         if (y < this.minY) {
             this.minY = y;
@@ -61,13 +69,18 @@ function calculatePixel(algorithm, surroundingString) {
     return algorithm[dec];
 }
 
-function countLit(algorithm, img, iterations) {
+function countLit(algorithm, img, iterations, prod) {
     let image = new HelperImage(img);
+    // consoleLogFriendlyDebug(image);
     for (let iteration = 0; iteration < iterations; iteration++) {
         let nextImage = new HelperImage([[]]);
+        if(iteration%2==0 && prod){
+            nextImage.infiniteSpaceFiller ='#';
+        }
 
-        for (let y = image.minY - 1; y <= image.maxY + 1; y++) {
-            for (let x = image.minX - 1; x <= image.maxX + 1; x++) {
+        let buffer = 1;
+        for (let y = image.minY - buffer; y <= image.maxY + buffer; y++) {
+            for (let x = image.minX - buffer; x <= image.maxX + buffer; x++) {
                 //for each point with a buffer of one to allow for infinite size
                 let surrounding = image.getSurrounding(y, x);
                 nextImage.set(y, x, calculatePixel(algorithm, surrounding));
@@ -78,24 +91,14 @@ function countLit(algorithm, img, iterations) {
 
     }
 
-    let litCounter = 0;
-    for (let y = image.minY; y <= image.maxY; y++) {
-        for (let x = image.minX; x <= image.maxX; x++) {
-            //for each point with a buffer of one to allow for infinite size
-            if (image.get(y, x) == '#') {
-                litCounter++;
-            };
-        }
-    }
-
-    return litCounter;
+    return image.lit;
 }
 
 function consoleLogFriendlyDebug(image){
     let arrayVersion = [];
-    for (let y = image.minY - 1; y < image.maxY + 1; y++) {
+    for (let y = image.minY-4; y <= image.maxY + 4; y++) {
         let row = '';
-        for (let x = image.minX - 1; x < image.maxX + 1; x++) {
+        for (let x = image.minX-4; x <= image.maxX + 4; x++) {
             row+=image.get(y, x);
         }
         arrayVersion.push(row);

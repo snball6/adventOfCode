@@ -1,4 +1,4 @@
-fdescribe("day20", () => {
+describe("day20", () => {
     describe("Part 1", () => {
         describe("helperImage class", () => {
             it('should create image with helper for safely getting coordinates', () => {
@@ -37,15 +37,26 @@ fdescribe("day20", () => {
             expect(calculatePixel(sampleAlgorithm, '...#...#.')).toEqual('#');
         });
 
-        it('should enhance and count the number of lights', () => {
-            expect(countLit(sampleAlgorithm, sampleImage, 1)).toEqual(24);
-            expect(countLit(sampleAlgorithm, sampleImage, 2)).toEqual(35);
+        it('should enhance and count the number of lights_sample input', () => {
+            expect(countLit(sampleAlgorithm, sampleImage, 1, false)).toEqual(24);
+            expect(countLit(sampleAlgorithm, sampleImage, 2,false)).toEqual(35);
         });
 
-        it('should enhance and count the number of lights', () => {
+        describe("the big catch that the sample data does not demonstrate", () => {
+            it('is worth noting that ......... results in a # - which means all the infinite space lit is lit after one iterations', () => {
+                expect(calculatePixel(puzzleAlgorithm, '.........')).toEqual('#');
+            });
+
+            it('is also notable that ######### results in . so by the second iteration those would all toggle back to .', () => {
+                expect(calculatePixel(puzzleAlgorithm, '#########')).toEqual('.');
+            });
+        });
+
+        it('should enhance and count the number of lights_puzzle input', () => {
             //5711 is too high...
             //5319 is too high...
-            expect(countLit(puzzleAlgorithm, puzzleImage, 1)).toEqual(24);
+            //5249 is just right - once I handle the infinite light flash
+            expect(countLit(puzzleAlgorithm, puzzleImage, 2, true)).toEqual(5249);
         });
 
     });
@@ -66,9 +77,8 @@ fdescribe("day20", () => {
         '..###',
     ]
 
-    let puzzleAlgorithm = '########.###.##.##..##..#...##..##..####.##...##..#.#.#####....' +
-        '#....##..##.##.##..#.##...##..#...##...#.#.####...#.###..#..#.#....####.........#.....' +
-        '#.....#..#.#..#..##..######..#.#.###..#...#.##....#.##.##..###.##.#..#..#####..##..##...' + '..#.##.######..#.#...#..#.....#..#..##...##.#.###....#.#.#.#.####.##.####.##.#.#.....##..##.#...####....#..#..##.#...#..#.##.....#.#.##.###..#.#........#.#######..#..#..##.########........###.############...#...##.#######.##.########..#...#..#........#...###.#.##.#..#.####..';
+    let puzzleAlgorithm = '########.###.##.##..##..#...##..##..####.##...##..#.#.#####....#....##..##.##.##..#.##...##..#...##...#.#.####...#.###..#..#.#....####.........#.....#.....#..#.#..#..##..######..#.#.###..#...#.##....#.##.##..###.##.#..#..#####..##..##.....#.##.######..#.#...#..#.....#..#..##...##.#.###....#.#.#.#.####.##.####.##.#.#.....##..##.#...####....#..#..##.#...#..#.##.....#.#.##.###..#.#........#.#######..#..#..##.########........###.############...#...##.#######.##.########..#...#..#........#...###.#.##.#..#.####..';
+
     let puzzleImage = [
         '...#....##.###...##.#..#....#.###.##.....#..#...###....#.###..###.##.#.#.#.....#....#...##...#..#..#',
         '.#...#.#.#.####..#...#..#.#..###.##..#.####...#....###..###...#.##.#...#....#.#..##.#....#...####.#.',
@@ -169,6 +179,6 @@ fdescribe("day20", () => {
         '#...#.##......######.#.####..####.#.#..#.#..#####...##..#.##.###.#..#.####.###.##..#..####..####....',
         '###.###..#.......###..#..#.##...##.###..#...###.#....#...###.#.#.#.#...#....#.##..##.########.##....',
         '.#.....##.....#.#.####......#.#.#..#######.#....#.....###...###.##...#..#..##.###.#...#..###.#.#####',
-        '##..#..###.##...#...#...####..###...###.#.#..###.#####...#####..#####..#.#.####.##.#....#.####..####',
+        '##..#..###.##...#...#...####..###...###.#.#..###.#####...#####..#####..#.#.####.##.#....#.####..####'
     ]
 });
