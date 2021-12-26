@@ -1,4 +1,4 @@
-fdescribe("day20", () => {
+describe("day20", () => {
     describe("Part 1", () => {
         describe("helperImage class", () => {
             it('should create image with helper for safely getting coordinates', () => {
