@@ -1,4 +1,4 @@
-fdescribe("day16", () => {
+describe("day16", () => {
     describe("Part 1", () => {
         it('should convert hex to binary', () => {
             expect(convertHexToBinary("D2FE28")).toEqual("110100101111111000101000");

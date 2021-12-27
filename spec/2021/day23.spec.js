@@ -1,6 +1,4 @@
-
-
-fdescribe("Day 23", () => {
+xdescribe("Day23", () => {
 
     describe("Part 1", () => {
         // #############
