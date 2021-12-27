@@ -48,7 +48,29 @@ fdescribe("day17", () => {
         });
     });
     describe("Part 2", () => {
+        it('should count possible velocity pairs_sample data', () => {
+            let target =
+            {
+                xMin: 20,
+                xMax: 30,
+                yMin: -10,
+                yMax: -5,
+            }
 
+            expect(countVelocities(target)).toEqual(112);
+        });
+
+        it('should count possible velocity pairs_sample data', () => {
+            let target =
+            {
+                xMin: 94,
+                xMax: 151,
+                yMin: -156,
+                yMax: -103,
+            }
+
+            expect(countVelocities(target)).toEqual(112);
+        });
     });
 
 

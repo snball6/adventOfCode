@@ -135,10 +135,23 @@ function findStylishVelocity(target) {
     //I think there is a maths way to do this, but brute force because my brain cannot be bothered just now...
     let safeMaxY = 500; //arbitrarily "big"
     for (let x = 0; x < target.xMax; x++) {
-        for (let y = safeMaxY; y>0; y--) {
+        for (let y = safeMaxY; y > 0; y--) {
             hitsTargetShortCircuitIfNotStylish(x, y, target);
         }
     }
 
     return globalMaxHeight;
+}
+
+function countVelocities(target) {
+    let total = 0;
+    for (let x = 0; x <= target.xMax; x++) {
+        for (let y = 1000; y >= target.yMin; y--) {
+            if (hitsTarget(x, y, target)) {
+                total++;
+            };
+        }
+    }
+
+    return total;
 }
