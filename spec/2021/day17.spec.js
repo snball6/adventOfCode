@@ -17,7 +17,7 @@ fdescribe("day17", () => {
             expect(hitsTarget(17, -4, target)).toEqual(false);
         });
 
-        it('should find most stylish velocity', () => {
+        it('should find most stylish velocity_sample data', () => {
             let target =
             {
                 xMin: 20,
@@ -29,6 +29,21 @@ fdescribe("day17", () => {
             expect(findStylishVelocity(target)).toEqual({
                 velocity: [6, 9],
                 maxHeight: 45
+            });
+        });
+
+        it('should find most stylish velocity_puzzle input', () => {
+            let target =
+            {
+                xMin: 94,
+                xMax: 151,
+                yMin: -156,
+                yMax: -103,
+            }
+
+            expect(findStylishVelocity(target)).toEqual({
+                velocity: [14,155],
+                maxHeight: 12090
             });
         });
     });
