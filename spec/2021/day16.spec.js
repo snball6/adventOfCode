@@ -1,4 +1,4 @@
-xdescribe("day16", () => {
+fdescribe("day16", () => {
     describe("Part 1", () => {
         it('should convert hex to binary', () => {
             expect(convertHexToBinary("D2FE28")).toEqual("110100101111111000101000");
@@ -8,23 +8,21 @@ xdescribe("day16", () => {
             expect(convertBinaryToDec("100")).toEqual(4);
         });
 
-        // it('should parse a literal', () => {
-        //     //110  100  101111111000101000
-        //     expect(literalCalculation("101111111000101000")).toEqual(2021);
-        // });
+        it('should parse a literal', () => {
+            let binaryString = convertHexToBinary('D2FE28');
+            expect(parsePacket(binaryString, 0)[0]).toEqual(new LiteralPacket(6, 4, 2021));
+        });
 
-        // it('should parse a literal packet', () => {
-        //     expect(parseBinaryToPackets("110100101111111000101000")).toEqual([{
-        //         version: 6,
-        //         packetType: 4,
-        //         value: 2021
-        //     }]);
-
-        // });
+        it('should parse a operator total_length type', () => {
+            let expected = new OperatorPacket(1,6)
+            expected.subPackets.push(new LiteralPacket(6,4,10));
+            expected.subPackets.push(new LiteralPacket(2,4,20))
+            let binaryString = convertHexToBinary('38006F45291200');
+            expect(parsePacket(binaryString, 0)[0]).toEqual(expected);
+        });
 
         it('should total version numbers_sample data', () => {
             expect(totalVersionNumbers("D2FE28")).toEqual(1 + 6 + 2);
-            expect(totalVersionNumbers("38006F45291200")).toEqual(1 + 6 + 2);
             // expect(totalVersionNumbers("8A004A801A8002F478")).toEqual(16);
             // expect(totalVersionNumbers("620080001611562C8802118E34")).toEqual(12);
             // expect(totalVersionNumbers("C0015000016115A2E0802F182340")).toEqual(23);

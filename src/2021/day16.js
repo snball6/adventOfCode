@@ -65,46 +65,79 @@ function totalVersionNumbers(hex) {
 
     let versionTotal = 0;
 
-    let binaryVersion = binaryString.substring(index, index += 3); // note substring has noninclusive ending index and I am incrementing my index as I do this
-    versionTotal += convertBinaryToDec(binaryVersion);
-    let binaryPacketType = binaryString.substring(index, index += 3); //noninclusive ending index
-    let decPacketType = convertBinaryToDec(binaryPacketType);
+    parsePacket(binaryString, 0);
 
-    let packet;
-    switch (decPacketType) {
-        case 4: //------------------literal logic------------------//
-           
-            let literalBits = '';
-            while (binaryString[index] != 0) {
-                index++; //increment passed the 1
-                literalBits += binaryString.substring(index, index += 4);
-                console.log('literalBits', literalBits);
-            }
-            index++; //increment passed the 0
-            literalBits += binaryString.substring(index, index += 4);
-            let literalValue = convertBinaryToDec(literalBits);
-            packet = new LiteralPacket(binaryVersion, packetTypeId, literalValue);
-            break;
-        default: //------------------operator logic------------------//
-            let lengthTypeId = binaryString[index++];
-            if (lengthTypeId == 0) {
-                let totalBitsInSubpackets = convertBinaryToDec(binaryString.substring(index, index += 15));
-                //now loop more... hm
-            } else {
-                let numberOfSubPackets = convertBinaryToDec(binaryString.substring(index, index += 11));
-            }
-    }
+    // let binaryVersion = binaryString.substring(index, index += 3); // note substring has noninclusive ending index and I am incrementing my index as I do this
+    // versionTotal += convertBinaryToDec(binaryVersion);
+    // let binaryPacketType = binaryString.substring(index, index += 3); //noninclusive ending index
+    // let decPacketType = convertBinaryToDec(binaryPacketType);
+
+    // let packet;
+    // switch (decPacketType) {
+    //     case 4: //------------------literal logic------------------//
+
+    //         let literalBits = '';
+    //         while (binaryString[index] != 0) {
+    //             index++; //increment passed the 1
+    //             literalBits += binaryString.substring(index, index += 4);
+    //             console.log('literalBits', literalBits);
+    //         }
+    //         index++; //increment passed the 0
+    //         literalBits += binaryString.substring(index, index += 4);
+    //         let literalValue = convertBinaryToDec(literalBits);
+    //         packet = new LiteralPacket(binaryVersion, packetTypeId, literalValue);
+    //         break;
+    //     default: //------------------operator logic------------------//
+    //         let lengthTypeId = binaryString[index++];
+    //         if (lengthTypeId == 0) {
+    //             let totalBitsInSubpackets = convertBinaryToDec(binaryString.substring(index, index += 15));
+    //             //now loop more... hm
+    //         } else {
+    //             let numberOfSubPackets = convertBinaryToDec(binaryString.substring(index, index += 11));
+    //         }
+    // }
     return versionTotal;
 }
 
-function parsePacket(string, terminationCondition, index){
+function parsePacket(binaryString, index) {
+    let binaryVersion = binaryString.substring(index, index += 3); // note substring has noninclusive ending index and I am incrementing my index as I do this
+    let binaryPacketType = binaryString.substring(index, index += 3); //noninclusive ending index
 
-    return{
+    let version = convertBinaryToDec(binaryVersion);
+    let decPacketType = convertBinaryToDec(binaryPacketType);
+
+    if (decPacketType == 4) {
+        let literalBits = '';
+        while (binaryString[index] != 0) {
+            index++; //increment passed the 1
+            literalBits += binaryString.substring(index, index += 4);
+        }
+        index++; //increment passed the 0
+        literalBits += binaryString.substring(index, index += 4);
+        let literalValue = convertBinaryToDec(literalBits);
+        return [new LiteralPacket(version, decPacketType, literalValue), index];
+    } else {
+        let lengthTypeId = binaryString[index++];
+        if (lengthTypeId == 0) {
+            let totalBitsInSubpackets = convertBinaryToDec(binaryString.substring(index, index += 15));
+            console.log(totalBitsInSubpackets);
+            let operator = new OperatorPacket(version, decPacketType);
+            let bitsAfter = 0;
+            while(bitsAfter<totalBitsInSubpackets){
+                console.log("loop");
+                let subPacket = parsePacket(binaryString, index);
+                bitsAfter+=subPacket[1]-index;
+                index = subPacket[1];
+                console.log(index);
+                operator.subPackets.push(subPacket[0]);
+            }
+            return [operator, index];
+        }
     }
 }
 
-class OperatorPacket{
-    constructor(version, packetTypeId){
+class OperatorPacket {
+    constructor(version, packetTypeId) {
         this.verison = version;
         this.packetTypeId = packetTypeId;
         this.subPackets = [];
@@ -112,8 +145,8 @@ class OperatorPacket{
 }
 
 class LiteralPacket {
-    constructor(verison, packetTypeId, value){
-        this.verison = version;
+    constructor(version, packetTypeId, value) {
+        this.version = version;
         this.packetTypeId = packetTypeId;
         this.value = value;
 
