@@ -74,7 +74,7 @@ function parsePacket(binaryString, index) {
     let binaryPacketType = binaryString.substring(index, index += 3); //noninclusive ending index
 
     let version = convertBinaryToDec(binaryVersion);
-    versionTotal+=version;
+    versionTotal += version;
     let decPacketType = convertBinaryToDec(binaryPacketType);
 
     if (decPacketType == 4) {
@@ -128,4 +128,56 @@ class LiteralPacket {
         this.value = value;
 
     }
+}
+
+function calculatePackets(hex) {
+    let binaryString = convertHexToBinary(hex);
+    let packets = parsePacket(binaryString, 0);
+
+    return findValueOfPacket(packets[0]);
+}
+
+function findValueOfPacket(packet) {
+    switch (packet.packetTypeId) {
+        case 4:
+            return packet.value;
+        case 0:
+            let sum = 0;
+            for (let i = 0; i < packet.subPackets.length; i++) {
+                sum += findValueOfPacket(packet.subPackets[i]);
+            }
+            return sum;
+        case 1:
+            let product = 1;
+            for (let i = 0; i < packet.subPackets.length; i++) {
+                product *= findValueOfPacket(packet.subPackets[i]);
+            }
+            return product;
+        case 2:
+            let min;
+            for (let i = 0; i < packet.subPackets.length; i++) {
+                let subValue = findValueOfPacket(packet.subPackets[i]);
+                if (min == undefined || min > subValue) {
+                    min = subValue;
+                }
+            }
+            return min;
+        case 3:
+
+            let max;
+            for (let i = 0; i < packet.subPackets.length; i++) {
+                let subValue = findValueOfPacket(packet.subPackets[i]);
+                if (max == undefined || max < subValue) {
+                    max = subValue;
+                }
+            }
+            return max;
+        case 5:
+            return findValueOfPacket(packet.subPackets[0]) > findValueOfPacket(packet.subPackets[1]) ? 1 : 0;
+        case 6:
+            return findValueOfPacket(packet.subPackets[0]) < findValueOfPacket(packet.subPackets[1]) ? 1 : 0;
+        case 7:
+            return findValueOfPacket(packet.subPackets[0]) == findValueOfPacket(packet.subPackets[1]) ? 1 : 0;
+    }
+
 }
