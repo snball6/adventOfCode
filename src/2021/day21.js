@@ -69,6 +69,7 @@ function getPart2Answer(player1Start, player2Start) {
     let dice = new QuantumDie();
     let diceRolls = dice.getSumOfNext3Roll();
 
+
     let games = [new Game(player1Start, player2Start, 0, 0, 1)];
     let player1Wins = 0;
     let player2Wins = 0;
@@ -81,10 +82,7 @@ function getPart2Answer(player1Start, player2Start) {
             for (const roll in diceRolls) {
                 let currentGame = games[i];
                 let instancesOfRoll = diceRolls[roll];
-                // console.log('instances', instancesOfRoll);
-                // console.log('currentGame.instances', currentGame.instances);
-                // console.log('currentGame.instances * ', currentGame.instances* instancesOfRoll);
-                let player1Position = currentGame.player1Pos + roll;
+                let player1Position = currentGame.player1Pos + parseInt(roll);
                 player1Position = player1Position % 10 == 0 ? 10 : player1Position % 10; //there's probably a better way to do this, but lazy...
                 let player1Score = player1Position + currentGame.player1Score;
                 tempGames1.push(new Game(
@@ -96,7 +94,6 @@ function getPart2Answer(player1Start, player2Start) {
                 ));
             }
         }
-
         let tempGames2 = [];
         for (let i = 0; i < tempGames1.length; i++) {
             if (tempGames1[i].findWinner()) {
@@ -113,7 +110,7 @@ function getPart2Answer(player1Start, player2Start) {
             for (const roll in diceRolls) {
                 let currentGame = tempGames2[i];
                 let instancesOfRoll = diceRolls[roll];
-                let player2Position = currentGame.player2Pos + roll;
+                let player2Position = currentGame.player2Pos + parseInt(roll);
                 player2Position = player2Position % 10 == 0 ? 10 : player2Position % 10; //there's probably a better way to do this, but lazy...
                 let player2Score = player2Position + currentGame.player2Score;
                 tempGames3.push(new Game(
@@ -141,25 +138,25 @@ function getPart2Answer(player1Start, player2Start) {
 }
 
 class Game {
-    constructor(player1Start, player2Start, player1Score, player2Score, instances) {
-        this.player1Pos = player1Start;
-        this.player2Pos = player2Start;
+    constructor(player1Pos, player2Pos, player1Score, player2Score, instances) {
+        this.player1Pos = player1Pos;
+        this.player2Pos = player2Pos;
         this.player1Score = player1Score;
         this.player2Score = player2Score;
         this.instances = instances; //how many games of this type?
     }
 
-    checkForMerger(otherGame) {
-        if (otherGame.player1Pos == this.player1Pos &&
-            otherGame.player2Pos == this.player2Pos &&
-            otherGame.player1Score == this.player1Score &&
-            otherGame.player2Score == this.player2Score
-        ) {
-            return true;
-        } else {
-            false
-        }
-    }
+    // checkForMerger(otherGame) {
+    //     if (otherGame.player1Pos == this.player1Pos &&
+    //         otherGame.player2Pos == this.player2Pos &&
+    //         otherGame.player1Score == this.player1Score &&
+    //         otherGame.player2Score == this.player2Score
+    //     ) {
+    //         return true;
+    //     } else {
+    //         false
+    //     }
+    // }
 
     findWinner() {
         if (this.player1Score >= 21) {
