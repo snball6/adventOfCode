@@ -1,4 +1,4 @@
-fdescribe("day21", () => {
+describe("day21", () => {
    describe("Part 1", () => {
       it('should build a deterministic dice which loops through 100', () => {
          let dice = new Dice();
@@ -42,6 +42,10 @@ fdescribe("day21", () => {
 
       it('should calculate the answer', () => {
          expect(getPart2Answer(4, 8)).toEqual(444356092776315);
+      });
+
+      it('should calculate the answer', () => {
+         expect(getPart2Answer(7, 2)).toEqual(131180774190079); //slow but works
       });
    });
 
