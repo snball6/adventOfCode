@@ -1,4 +1,4 @@
-describe("day1", () => {
+describe("day2", () => {
 
     describe("Part 1", () => {
         it("Sample - should calc total score", () => {
@@ -7,22 +7,22 @@ describe("day1", () => {
         });
 
         it("Helper - should calc score of round ties", () => {
-            expect(getScore('X', 'A')).toBe(3 + 1); //rock rock
-            expect(getScore('Y', 'B')).toBe(3 + 2); //paper paper
-            expect(getScore('Z', 'C')).toBe(3 + 3); //scissors scissors
+            expect(getScore('A', 'A')).toBe(3 + 1); //rock rock
+            expect(getScore('B', 'B')).toBe(3 + 2); //paper paper
+            expect(getScore('C', 'C')).toBe(3 + 3); //scissors scissors
         });
 
 
         it("Helper - should calc score of round lose", () => {
-            expect(getScore('X', 'B')).toBe(0 + 1); // rock v paper 
-            expect(getScore('Y', 'C')).toBe(0 + 2); // paper v scissors
-            expect(getScore('Z', 'A')).toBe(0 + 3); // scissor v rock
+            expect(getScore('A', 'B')).toBe(0 + 1); // rock v paper 
+            expect(getScore('B', 'C')).toBe(0 + 2); // paper v scissors
+            expect(getScore('C', 'A')).toBe(0 + 3); // scissor v rock
         });
 
         it("Helper - should calc score of round win", () => {
-            expect(getScore('X', 'C')).toBe(6 + 1); // rock v scissors 
-            expect(getScore('Y', 'A')).toBe(6 + 2); // paper v rock
-            expect(getScore('Z', 'B')).toBe(6 + 3); // scissor v paper
+            expect(getScore('A', 'C')).toBe(6 + 1); // rock v scissors 
+            expect(getScore('B', 'A')).toBe(6 + 2); // paper v rock
+            expect(getScore('C', 'B')).toBe(6 + 3); // scissor v paper
         });
 
 
@@ -33,7 +33,10 @@ describe("day1", () => {
     });
 
     describe("Part 2", () => {
-
+        it("Sample - should calc total score", () => {
+            let actual = calcScorePart2(sample);
+            expect(actual).toBe(12);
+        });
     });
 
     //alterations outside code - column select to make arrays of strings:

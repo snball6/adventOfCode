@@ -3,18 +3,15 @@ function calcScorePart1(input) {
 
     for (let i = 0; i < input.length; i++) {
         let opponent = input[i][0];
-        let you = input[i][1];
-
+        let you = normalize(input[i][1]);
         totalScore+=getScore(you, opponent);
 
     }
     return totalScore;
 }
 
-function getScore(you, opp){
+function getScore(normalizedYou, opp){
     let score = 0;
-    let normalizedYou = normalize(you);
-
     switch (normalizedYou) {
         case 'A':
             score += 1;
@@ -26,7 +23,6 @@ function getScore(you, opp){
             score += 3;
             break;
     }
-    console.log(normalizedYou, opp);
     //draw
     if (normalizedYou == opp) {
         score += 3;
@@ -55,4 +51,8 @@ function normalize(input) {
         default:
             return "uh oh";
     }
+}
+
+function calcScorePart2(){
+
 }
