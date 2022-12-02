@@ -13,11 +13,15 @@ describe("day1", () => {
     });
 
     describe("Part 2", () => {
-        it("Should", () => {
-
+        it("Should return the top 3 highest combined - Sample", () => {
+            let actual = getTop3Highest(sample);
+            expect(actual).toBe(45000);
         });
 
-
+        it("Should return the top 3 highest combined - Actual", () => {
+            let actual = getTop3Highest(input);
+            expect(actual).toBe(211805);
+        });
     });
 
     //alterations before pasting:
