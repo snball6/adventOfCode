@@ -5,35 +5,41 @@ function calcScorePart1(input) {
         let opponent = input[i][0];
         let you = input[i][1];
 
-        let normalizedYou = normalize(you);
-
-
-        switch (normalizedYou) {
-            case 'A':
-                totalScore += 1;
-                break;
-            case 'B':
-                totalScore += 2;
-                break;
-            case 'C':
-                totalScore += 3;
-                break;
-        }
-        //draw
-        if (normalizedYou == opponent) {
-            totalScore += 3;
-        }
-        //win
-        else if (
-            (normalizedYou == 'A' && opponent == 'B') || //Rock beats scissors
-            (normalizedYou == 'B' && opponent == 'C') || //Scissors beats paper
-            (normalizedYou == 'C' && opponent == 'A')    //Paper beats rock    
-        ) {
-            totalScore += 6;
-        }
+        totalScore+=getScore(you, opponent);
 
     }
     return totalScore;
+}
+
+function getScore(you, opp){
+    let score = 0;
+    let normalizedYou = normalize(you);
+
+    switch (normalizedYou) {
+        case 'A':
+            score += 1;
+            break;
+        case 'B':
+            score += 2;
+            break;
+        case 'C':
+            score += 3;
+            break;
+    }
+    console.log(normalizedYou, opp);
+    //draw
+    if (normalizedYou == opp) {
+        score += 3;
+    }
+    //win
+    else if (
+        (normalizedYou == 'A' && opp == 'C') ||  //Rock beats scissors
+        (normalizedYou == 'B' && opp == 'A')||  //Paper beats Rock
+        (normalizedYou == 'C' && opp == 'B')   ///Scissors beats Paper
+    ) {
+        score += 6;
+    }
+    return score;
 }
 
 //make same letters for both sides--I assume part 2 won't have  y x and z directly 

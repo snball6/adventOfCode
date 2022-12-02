@@ -1,16 +1,34 @@
 describe("day1", () => {
 
     describe("Part 1", () => {
-        it("Should calc total score - Sample", () => {
+        it("Sample - should calc total score", () => {
             let actual = calcScorePart1(sample);
             expect(actual).toBe(15);
         });
 
-        it("Should calc total score - Actual", () => {
-            let actual = calcScorePart1(input);
-            expect(actual).toBe(15);
-            //11874 is too low
+        it("Helper - should calc score of round ties", () => {
+            expect(getScore('X', 'A')).toBe(3 + 1); //rock rock
+            expect(getScore('Y', 'B')).toBe(3 + 2); //paper paper
+            expect(getScore('Z', 'C')).toBe(3 + 3); //scissors scissors
+        });
 
+
+        it("Helper - should calc score of round lose", () => {
+            expect(getScore('X', 'B')).toBe(0 + 1); // rock v paper 
+            expect(getScore('Y', 'C')).toBe(0 + 2); // paper v scissors
+            expect(getScore('Z', 'A')).toBe(0 + 3); // scissor v rock
+        });
+
+        it("Helper - should calc score of round win", () => {
+            expect(getScore('X', 'C')).toBe(6 + 1); // rock v scissors 
+            expect(getScore('Y', 'A')).toBe(6 + 2); // paper v rock
+            expect(getScore('Z', 'B')).toBe(6 + 3); // scissor v paper
+        });
+
+
+        it("Actual - should calc total score", () => {
+            let actual = calcScorePart1(input);
+            expect(actual).toBe(13446);
         });
     });
 
@@ -19,7 +37,6 @@ describe("day1", () => {
     });
 
     //alterations outside code - column select to make arrays of strings:
-
     let sample = [
         ['A', 'Y'],
         ['B', 'X'],
