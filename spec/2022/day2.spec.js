@@ -37,6 +37,11 @@ describe("day2", () => {
             let actual = calcScorePart2(sample);
             expect(actual).toBe(12);
         });
+
+        it("Actual - should calc total score", () => {
+            let actual = calcScorePart2(input);
+            expect(actual).toBe(13509);
+        });
     });
 
     //alterations outside code - column select to make arrays of strings:

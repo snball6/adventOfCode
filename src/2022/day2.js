@@ -4,13 +4,13 @@ function calcScorePart1(input) {
     for (let i = 0; i < input.length; i++) {
         let opponent = input[i][0];
         let you = normalize(input[i][1]);
-        totalScore+=getScore(you, opponent);
+        totalScore += getScore(you, opponent);
 
     }
     return totalScore;
 }
 
-function getScore(normalizedYou, opp){
+function getScore(normalizedYou, opp) {
     let score = 0;
     switch (normalizedYou) {
         case 'A':
@@ -30,7 +30,7 @@ function getScore(normalizedYou, opp){
     //win
     else if (
         (normalizedYou == 'A' && opp == 'C') ||  //Rock beats scissors
-        (normalizedYou == 'B' && opp == 'A')||  //Paper beats Rock
+        (normalizedYou == 'B' && opp == 'A') ||  //Paper beats Rock
         (normalizedYou == 'C' && opp == 'B')   ///Scissors beats Paper
     ) {
         score += 6;
@@ -53,6 +53,50 @@ function normalize(input) {
     }
 }
 
-function calcScorePart2(){
+function calcScorePart2(input) {
+    let totalScore = 0;
 
+    for (let i = 0; i < input.length; i++) {
+        let opponent = input[i][0];
+        let yourStrategy = input[i][1];
+        let you;
+        switch (yourStrategy) {
+            case 'X': 
+                //loose
+                switch(opponent){
+                    case 'A':
+                        you = 'C' //scissors loses to rock
+                        break;
+                    case 'B':
+                        you = 'A' //rock loses to paper
+                        break;
+                    case 'C':
+                        you = 'B' //paper loses to scissors
+                        break;
+                }
+                break;
+            case 'Y':
+                //tie
+                you = opponent;
+                break;
+            case 'Z':
+                //win
+                switch(opponent){
+                    case 'A':
+                        you = 'B' //paper beats to rock
+                        break;
+                    case 'B':
+                        you = 'C' //scissors beats to paper
+                        break;
+                    case 'C':
+                        you = 'A' //rockbeats to scissors
+                        break;
+                }
+                break;
+        }
+
+        totalScore += getScore(you, opponent);
+
+    }
+    return totalScore;
 }
