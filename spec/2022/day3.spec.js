@@ -31,7 +31,20 @@ describe("day3", () => {
     });
 
     describe("Part 2", () => {
+        it("Helper - should find the common item", () => {
+            expect(findDuplicateAcrossBags(sample[0], sample[1], sample[2])).toBe('r');
+            expect(findDuplicateAcrossBags(sample[3], sample[4], sample[5])).toBe('Z');
+        });
 
+        it("Sample - should sum priorities of badges", () => {
+            let actual = sumPrioritiesOfBadges(sample);
+            expect(actual).toBe(70);
+        });
+
+        it("Actual - should sum priorities of badges", () => {
+            let actual = sumPrioritiesOfBadges(input);
+            expect(actual).toBe(2639);
+        });
     });
 
     //alterations outside code - column select to make arrays of strings:
