@@ -15,7 +15,12 @@ describe("2015- day5", () => {
     });
 
     describe("Part 2", () => {
-
+        it("Samples - should find nice strings", () => {
+            expect(isNiceString2('qjhvhtzxzqqjkmpb')).toEqual(true);
+            expect(isNiceString2('xxyxx')).toEqual(true);
+            expect(isNiceString2('uurcxstgmygtbstg')).toEqual(false);
+            expect(isNiceString2('ieodomkazucvgmuy')).toEqual(false);
+        });
     });
 
     let actual = [
