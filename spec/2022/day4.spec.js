@@ -1,19 +1,27 @@
 describe("day4", () => {
 
     describe("Part 1", () => {
-        it("Sample - should sum priorities", () => {
+        it("Sample - should count full overlaps", () => {
             let actual = countFullOverlapPairs(sample);
             expect(actual).toBe(2);
         });
 
-        it("Actual - should sum priorities", () => {
+        it("Actual - should count full overlaps", () => {
             let actual = countFullOverlapPairs(input);
             expect(actual).toBe(496);
         });
     });
 
     describe("Part 2", () => {
+        it("Sample - should count all overlaps", () => {
+            let actual = countAllOverlapPairs(sample);
+            expect(actual).toBe(4);
+        });
 
+        it("Actual - should count full overlaps", () => {
+            let actual = countAllOverlapPairs(input);
+            expect(actual).toBe(847);
+        });
     });
 
     //alterations outside code - column select to make arrays of strings:
