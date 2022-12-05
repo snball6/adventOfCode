@@ -15,11 +15,21 @@ describe("2015- day5", () => {
     });
 
     describe("Part 2", () => {
+        it("Helper - find repeat 2 letters", () => {
+            expect(hasRepeats('xyxy')).toEqual(true);
+            expect(hasRepeats('axybxyx')).toEqual(true);
+            expect(hasRepeats('aaa')).toEqual(false);
+        });
+
         it("Samples - should find nice strings", () => {
-            expect(isNiceString2('qjhvhtzxzqqjkmpb')).toEqual(true);
-            expect(isNiceString2('xxyxx')).toEqual(true);
-            expect(isNiceString2('uurcxstgmygtbstg')).toEqual(false);
-            expect(isNiceString2('ieodomkazucvgmuy')).toEqual(false);
+            expect(hasRepeats('qjhvhtzxzqqjkmpb')).toEqual(true);
+            expect(hasRepeats('xxyxx')).toEqual(true);
+            expect(hasRepeats('uurcxstgmygtbstg')).toEqual(false);
+            expect(hasRepeats('ieodomkazucvgmuy')).toEqual(false);
+        });
+
+        it("Actual - should count nice strings", () => {
+            expect(countNiceStrings2(actual)).toEqual(55);
         });
     });
 
