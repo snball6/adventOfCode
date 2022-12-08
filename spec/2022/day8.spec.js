@@ -38,6 +38,18 @@ describe("day7", () => {
     });
 
     describe("Part 2", () => {
+        it("Helper - it should calculate the scenic score", () => {
+            expect(getScenicScore(1, 2, sample)).toEqual(4);
+            expect(getScenicScore(3, 2, sample)).toEqual(8);
+        });
+
+        it("Sample - it should get the highest scenic score", () => {
+            expect(getTopScenicScore(sample)).toEqual(8);
+        });
+
+        it("Actual - it should get the highest scenic score", () => {
+            expect(getTopScenicScore(actual)).toEqual(486540);
+        });
     });
 
     let sample = [
