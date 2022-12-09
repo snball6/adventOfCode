@@ -19,12 +19,19 @@ describe("day7", () => {
             expect(partOneSolution(sample)).toEqual(95437);
         });
 
-        fit("actual - should total directories with less than 100,000", () => {
+        it("actual - should total directories with less than 100,000", () => {
             expect(partOneSolution(actual)).toEqual(1749646); 
         });
     });
 
     describe("Part 2", () => {
+        it("Sample - should find the size of the minimum directory to delete for an update", () => {
+            expect(partTwoSolution(sample)).toEqual(24933642);
+        });
+
+        it("Actual - should find the size of the minimum directory to delete for an update", () => {
+            expect(partTwoSolution(actual)).toEqual(1498966);
+        });
     });
 
     let sample =

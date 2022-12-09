@@ -52,7 +52,7 @@ function ParseLSOutput(input, i, currentLocation, directoryMap) {
                     [directoryName]: newDirectory
                 }
             );
-                //DIRECTORIE NAMES REPEAT - making parent + child the key
+            //DIRECTORIE NAMES REPEAT - making parent + child the key
             directoryMap[currentLocation.name + directoryName] = newDirectory;
         } else {
             //add file
@@ -69,7 +69,7 @@ function ParseLSOutput(input, i, currentLocation, directoryMap) {
             let finished = addFileSizeToParents(currentLocation, fileSize);
         }
         i++;
-        if(i >= input.length){
+        if (i >= input.length) {
             //end of output
             break;
         }
@@ -77,29 +77,47 @@ function ParseLSOutput(input, i, currentLocation, directoryMap) {
     return i;
 }
 
-function addFileSizeToParents(currentLocation, fileSize){
+function addFileSizeToParents(currentLocation, fileSize) {
     currentLocation.totalFileSize += fileSize;
     //if it has a parent directory
-    if(currentLocation.parent){
+    if (currentLocation.parent) {
         addFileSizeToParents(currentLocation.parent, fileSize);
     }
     return true;
 }
 
-function partOneSolution(input){
+function partOneSolution(input) {
     let output = buildFileStructure(input);
     let directories = output[1];
-    console.log(directories);
-    let fileStructure = output[0];
-    console.log(fileStructure);
 
     let total = 0;
-    console.log(Object.keys(directories).length);
-    for(const [key, value] of Object.entries(directories)){
-        let current = directories[key];
-        if(current.totalFileSize <= 100000){
-            total+=current.totalFileSize;
+    for (const [key, value] of Object.entries(directories)) {
+        if (value.totalFileSize <= 100000) {
+            total += value.totalFileSize;
         }
     }
     return total;
+}
+
+function partTwoSolution(input) {
+    let output = buildFileStructure(input);
+    let directories = output[1];
+
+    let totalFileSize = 70000000;
+    let usedSpace = directories['root'].totalFileSize;
+    let unusedSpace = totalFileSize - usedSpace;
+
+    let spaceRequiredByUpdate = 30000000;
+    let spaceToFreeUp = spaceRequiredByUpdate - unusedSpace;
+
+    let nearestMatch = 30000000; //start largest
+
+    for (const [key, value] of Object.entries(directories)) {
+        if (
+            value.totalFileSize > spaceToFreeUp &&
+            value.totalFileSize < nearestMatch) {
+            nearestMatch = value.totalFileSize;
+        }
+    }
+    return nearestMatch;
 }
