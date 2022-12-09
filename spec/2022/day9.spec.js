@@ -10,8 +10,8 @@ describe("day9", () => {
                 '3,0': '#'
             }
             let actual = recordTailMovement('R', 4,
-                { x: 0, y: 0 }, //head start
-                { x: 0, y: 0 }, //tail start
+                [{ x: 0, y: 0 }, //head start
+                { x: 0, y: 0 }], //tail start
                 { '0,0': '#' });
 
             expect(actual).toEqual(expectedTailMovements);
@@ -26,8 +26,8 @@ describe("day9", () => {
                 '4,3': '#'
             }
             let actual = recordTailMovement('U', 4,
-                { x: 4, y: 0 },//head start
-                { x: 3, y: 0 },//tail start
+                [{ x: 4, y: 0 },//head start
+                { x: 3, y: 0 }],//tail start
                 { '3,0': '#' });
 
             expect(actual).toEqual(expectedTailMovements);
@@ -41,8 +41,8 @@ describe("day9", () => {
                 '4,3': '#'
             }
             let actual = recordTailMovement('L', 3,
-                { x: 4, y: 4 },//head start
-                { x: 4, y: 3 },//tail start
+                [{ x: 4, y: 4 },//head start
+                { x: 4, y: 3 }],//tail start
                 { '4,3': '#' });
 
             expect(actual).toEqual(expectedTailMovements);
@@ -54,8 +54,8 @@ describe("day9", () => {
                 '2,4': '#'
             }
             let actual = recordTailMovement('D', 1,
-                { x: 1, y: 4 },//head start
-                { x: 2, y: 4 },//tail start
+                [{ x: 1, y: 4 },//head start
+                { x: 2, y: 4 }],//tail start
                 { '2,4': '#' });
 
             expect(actual).toEqual(expectedTailMovements);
@@ -69,8 +69,8 @@ describe("day9", () => {
                 '4,3': '#'
             }
             let actual = recordTailMovement('R', 4,
-                { x: 1, y: 3 },//head start
-                { x: 2, y: 4 },//tail start
+                [{ x: 1, y: 3 },//head start
+                { x: 2, y: 4 }],//tail start
                 { '2,4': '#' });
 
             expect(actual).toEqual(expectedTailMovements);
@@ -86,7 +86,9 @@ describe("day9", () => {
     });
 
     describe("Part 2", () => {
-
+        // it("Sample - should count spots tail has visited", () => {
+        //     expect(countTailVisitCountPart2(sample)).toEqual(1);
+        // });
     });
 
     let sample = [
