@@ -1,4 +1,4 @@
-describe("day7", () => {
+describe("day8", () => {
 
     describe("Part 1", () => {
         it("Helper - it should getVisibilityInAllDirections interior", () => {
