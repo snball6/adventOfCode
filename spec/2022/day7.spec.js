@@ -19,8 +19,8 @@ describe("day7", () => {
             expect(partOneSolution(sample)).toEqual(95437);
         });
 
-        it("actual - should total directories with less than 100,000", () => {
-            expect(partOneSolution(actual)).toEqual(5); //1413531 is too low
+        fit("actual - should total directories with less than 100,000", () => {
+            expect(partOneSolution(actual)).toEqual(1749646); 
         });
     });
 

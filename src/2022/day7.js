@@ -2,6 +2,7 @@ function buildFileStructure(input) {
     let i = 0;
 
     let root = {
+        name: 'root',
         totalFileSize: 0,
         childFiles: [],
         childDirectories: []
@@ -24,7 +25,7 @@ function buildFileStructure(input) {
             if (directoryName == "..") {
                 currentLocation = currentLocation.parent;
             } else {
-                currentLocation = directoryMap[directoryName]
+                currentLocation = directoryMap[currentLocation.name + directoryName]
             }
             i++
         }
@@ -39,6 +40,7 @@ function ParseLSOutput(input, i, currentLocation, directoryMap) {
             //add directory
             let directoryName = line.split(" ")[1];
             let newDirectory = {
+                name: directoryName,
                 totalFileSize: 0,
                 childFiles: [],
                 childDirectories: [],
@@ -50,8 +52,8 @@ function ParseLSOutput(input, i, currentLocation, directoryMap) {
                     [directoryName]: newDirectory
                 }
             );
-
-            directoryMap[directoryName] = newDirectory;
+                //DIRECTORIE NAMES REPEAT - making parent + child the key
+            directoryMap[currentLocation.name + directoryName] = newDirectory;
         } else {
             //add file
             let fileName = line.split(" ")[1];
@@ -85,9 +87,14 @@ function addFileSizeToParents(currentLocation, fileSize){
 }
 
 function partOneSolution(input){
-    let directories = buildFileStructure(input)[1];
+    let output = buildFileStructure(input);
+    let directories = output[1];
+    console.log(directories);
+    let fileStructure = output[0];
+    console.log(fileStructure);
 
     let total = 0;
+    console.log(Object.keys(directories).length);
     for(const [key, value] of Object.entries(directories)){
         let current = directories[key];
         if(current.totalFileSize <= 100000){
