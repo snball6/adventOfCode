@@ -18,14 +18,17 @@ function recordTailMovement(direction, moves, knots, tailMovements,) {
     }
     //loop the number of moves
     for (let i = moves; i > 0; i--) {
+        //move first knot
+        knots[0].x += xIncrement;
+        knots[0].y += yIncrement;
         //loop for all knots
         for (let knotIndex = 0; knotIndex < knots.length - 1; knotIndex++) {
             const leadingKnot = knots[knotIndex];
             const followingKnot = knots[knotIndex + 1];
-            
-            moveToFollow(leadingKnot, followingKnot, xIncrement, yIncrement);
-    
-            if(knotIndex+2 == knots.length){
+
+            moveToFollow(leadingKnot, followingKnot);
+
+            if (knotIndex + 2 == knots.length) {
                 tailMovements[followingKnot.x + ',' + followingKnot.y] = '#';
             }
         }
@@ -34,9 +37,7 @@ function recordTailMovement(direction, moves, knots, tailMovements,) {
     return tailMovements
 }
 
-function moveToFollow(leadingKnot, followingKnot, xIncrement, yIncrement) {
-    leadingKnot.x += xIncrement;
-    leadingKnot.y += yIncrement;
+function moveToFollow(leadingKnot, followingKnot) {
     //right
     if (leadingKnot.x - 1 > followingKnot.x) { //if head is at least 1 space away
         followingKnot.x++;
@@ -87,21 +88,20 @@ function moveToFollow(leadingKnot, followingKnot, xIncrement, yIncrement) {
     }
 }
 
-function countTailVisitCount(input) {
-    let head = {
-        x: 0,
-        y: 0
-    }
-    let tail = {
-        x: 0,
-        y: 0
+function countTailVisitCount(input, length) {
+    let knots = [];
+    for (let i = 0; i < length; i++) {
+        knots.push({
+            x: 0,
+            y: 0
+        });
     }
     let tailMovements = {
         '0,0': '#'
     }
 
     for (let i = 0; i < input.length; i++) {
-        recordTailMovement(input[i][0], input[i][1], [head, tail], tailMovements)
+        recordTailMovement(input[i][0], input[i][1], knots, tailMovements)
     }
 
     return Object.keys(tailMovements).length;

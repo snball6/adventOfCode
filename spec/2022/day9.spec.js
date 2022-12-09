@@ -77,18 +77,22 @@ describe("day9", () => {
         });
 
         it("Sample - should count spots tail has visited", () => {
-            expect(countTailVisitCount(sample)).toEqual(13);
+            expect(countTailVisitCount(sample, 2)).toEqual(13);
         });
 
         it("Actual - should count spots tail has visited", () => {
-            expect(countTailVisitCount(actualInput)).toEqual(6026);
+            expect(countTailVisitCount(actualInput, 2)).toEqual(6026);
         });
     });
 
     describe("Part 2", () => {
-        // it("Sample - should count spots tail has visited", () => {
-        //     expect(countTailVisitCountPart2(sample)).toEqual(1);
-        // });
+        it("Sample - should count spots tail has visited", () => {
+            expect(countTailVisitCount(sample, 10)).toEqual(1);
+        });
+
+        it("Actual - should count spots tail has visited", () => {
+            expect(countTailVisitCount(actualInput, 10)).toEqual(2273);
+        });
     });
 
     let sample = [
