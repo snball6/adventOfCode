@@ -3,9 +3,7 @@ describe("day7", () => {
     describe("Part 1", () => {
         it("Helper - it should buildFileStructure", () => {
             let shape = buildFileStructure(sample)[0];
-            console.log(shape);
             expect(shape.totalFileSize).toEqual(48381165);
-            console.log(shape.childDirectories);
             let directoryA = shape.childDirectories[0]['a'];
             let directoryD = shape.childDirectories[1]['d'];
             expect(directoryA.totalFileSize).toEqual(94853);
