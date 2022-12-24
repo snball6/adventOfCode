@@ -128,6 +128,19 @@ describe("day11", () => {
     });
 
     describe("Part 2", () => {
-
+        it("Helper - it handles new rules_20 rounds", () => {
+            getMonkeyBusinessPart2(sample, 1);
+            expect(sample[0].inspections).toEqual(2);
+            expect(sample[1].inspections).toEqual(4);
+            expect(sample[2].inspections).toEqual(3);
+            expect(sample[3].inspections).toEqual(6);
+        });
+        it("Helper - it handles new rules_20 rounds", () => {
+            getMonkeyBusinessPart2(sample, 20);
+            expect(sample[0].inspections).toEqual(99);
+            expect(sample[1].inspections).toEqual(97);
+            expect(sample[2].inspections).toEqual(8);
+            expect(sample[3].inspections).toEqual(103);
+        });
     });
 });
