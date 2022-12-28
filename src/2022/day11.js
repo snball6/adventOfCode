@@ -41,6 +41,13 @@ function getMonkeyBusiness(monkeys) {
 
 function completeRoundPart2(monkeys) {
     let numberOfMonkeys = Object.keys(monkeys).length;
+    let commonModOption = 1;
+
+    //for each monkey get shared mod option
+    for (let i = 0; i < numberOfMonkeys; i++) {
+        commonModOption*=monkeys[i].divisibleTest;
+    }
+
     //for each monkey
     for (let i = 0; i < numberOfMonkeys; i++) {
         let currentMonkey = monkeys[i];
@@ -50,10 +57,8 @@ function completeRoundPart2(monkeys) {
             //Inspection + worry increase
             currentWorry = currentMonkey.operation(currentWorry);
             currentMonkey.inspections++;
-            //worry decrease
-            //if things get too big I might need to do something though...
-            // currentWorry = Math.floor(currentWorry/3);
-            console.log(currentWorry);
+            //decrease worry by common divider
+            currentWorry = currentWorry % commonModOption;
             if(currentMonkey.test(currentWorry)){
                 monkeys[currentMonkey.ifTrue].items.push(currentWorry);
             } else {
