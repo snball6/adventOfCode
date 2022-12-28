@@ -13,7 +13,7 @@ function getOptions(grid, visited, currentY, currentX) {
     let options = []
     let currentElevation = getElevation(grid, currentY, currentX);
     //top
-    if (currentY - 1 > 0) {
+    if (currentY - 1 >= 0) {
         //not already visited
         if (!visited[(currentY - 1) + ',' + currentX]) {
             let topsElevation = getElevation(grid, currentY - 1, currentX);
@@ -41,7 +41,7 @@ function getOptions(grid, visited, currentY, currentX) {
         }
     }
     //left
-    if (currentX - 1 > 0) {
+    if (currentX - 1 >= 0) {
         if (!visited[currentY + ',' + (currentX - 1)]) {
             let leftElevation = getElevation(grid, currentY, currentX - 1);
             if (currentElevation + 1 >= leftElevation) {
@@ -72,12 +72,11 @@ function getLeastSteps(grid) {
 
     let possibleSteps = [];
     findPath(grid, visited, currentY, currentX, possibleSteps);
-    return possibleSteps;
+    return Math.min(...possibleSteps);
 }
 
 function findPath(grid, visited, currentY, currentX, possibleSteps) {
     // console.log("Find path");
-    console.log("current: " + currentY + ',' + currentX);
     if (grid[currentY][currentX] == 'E') {
         console.log("END");
         possibleSteps.push(Object.keys(visited).length);
@@ -85,13 +84,10 @@ function findPath(grid, visited, currentY, currentX, possibleSteps) {
     } else {
         //find available paths
         let nextSteps = getOptions(grid, visited, currentY, currentX);
-        // console.log(nextSteps);
         if (nextSteps.length == 0) {
-            console.log("No where to go");
             //no where left to go
             return;
         } else {
-            let possibleLengths = []
             for (let i = 0; i < nextSteps.length; i++) {
                 let newY = nextSteps[i][0];
                 let newX = nextSteps[i][1];

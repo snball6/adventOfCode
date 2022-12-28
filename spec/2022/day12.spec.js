@@ -11,6 +11,10 @@ describe("day12", () => {
             ['a', 'c', 'c', 't', 'u', 'v', 'w', 'j'],
             ['a', 'b', 'd', 'e', 'f', 'g', 'h', 'i'],
         ]
+
+        actual = [
+            
+        ]
     });
 
     describe("Part 1", () => {
@@ -34,7 +38,7 @@ describe("day12", () => {
             ]);
 
             expect(getOptions(sample, { '2,7': true }, 1, 7)).toEqual([
-                0, 7
+                [0, 7]
             ])
 
         });
