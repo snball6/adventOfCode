@@ -70,16 +70,20 @@ function getLeastSteps(grid) {
     let visited = {};
     visited[currentY + ',' + currentX];
 
-    let possibleSteps = [];
-    findPath(grid, visited, currentY, currentX, possibleSteps);
-    return Math.min(...possibleSteps);
+    let shortestPath = [];//array hack to still be passing by reference...
+    findPath(grid, visited, currentY, currentX, shortestPath);
+    return shortestPath[0];
 }
 
-function findPath(grid, visited, currentY, currentX, possibleSteps) {
-    // console.log("Find path");
-    if (grid[currentY][currentX] == 'E') {
-        console.log("END");
-        possibleSteps.push(Object.keys(visited).length);
+function findPath(grid, visited, currentY, currentX, shortestPath) {
+    console.log("findPath");
+    let currentLengthPath = Object.keys(visited).length;
+    if(shortestPath[0]<=currentLengthPath){
+        console.log("abort");
+        return;
+    } else if (grid[currentY][currentX] == 'E') 
+    {   shortestPath.pop();
+        shortestPath.push(Object.keys(visited).length);
         return;
     } else {
         //find available paths
@@ -93,7 +97,7 @@ function findPath(grid, visited, currentY, currentX, possibleSteps) {
                 let newX = nextSteps[i][1];
                 let deepCopyVisited = JSON.parse(JSON.stringify(visited));
                 deepCopyVisited[newY + ',' + newX] = true;
-                findPath(grid, deepCopyVisited, newY, newX, possibleSteps);
+                findPath(grid, deepCopyVisited, newY, newX, shortestPath);
             }
             return;
         }
