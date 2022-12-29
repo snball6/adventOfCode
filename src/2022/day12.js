@@ -18,7 +18,7 @@ function getOptions(grid, visited, currentY, currentX) {
         if (!visited[(currentY - 1) + ',' + currentX]) {
             let topsElevation = getElevation(grid, currentY - 1, currentX);
             if (currentElevation + 1 >= topsElevation) {
-                options.push([currentY - 1, currentX]);
+                options.push([currentY - 1, currentX, topsElevation]);
             }
         }
     }
@@ -27,7 +27,7 @@ function getOptions(grid, visited, currentY, currentX) {
         if (!visited[(currentY + 1) + ',' + currentX]) {
             let bottomElevation = getElevation(grid, currentY + 1, currentX);
             if (currentElevation + 1 >= bottomElevation) {
-                options.push([currentY + 1, currentX]);
+                options.push([currentY + 1, currentX, bottomElevation]);
             }
         }
     }
@@ -36,7 +36,7 @@ function getOptions(grid, visited, currentY, currentX) {
         if (!visited[currentY + ',' + (currentX + 1)]) {
             let rightElevation = getElevation(grid, currentY, currentX + 1);
             if (currentElevation + 1 >= rightElevation) {
-                options.push([currentY, currentX + 1]);
+                options.push([currentY, currentX + 1, rightElevation]);
             }
         }
     }
@@ -45,12 +45,12 @@ function getOptions(grid, visited, currentY, currentX) {
         if (!visited[currentY + ',' + (currentX - 1)]) {
             let leftElevation = getElevation(grid, currentY, currentX - 1);
             if (currentElevation + 1 >= leftElevation) {
-                options.push([currentY, currentX - 1]);
+                options.push([currentY, currentX - 1, leftElevation]);
             }
         }
     }
 
-    return options;
+    return options.sort(function (a, b) { return b[2] - a[2]}); //sort by elevation
 }
 
 function getElevation(grid, y, x) {
@@ -76,13 +76,12 @@ function getLeastSteps(grid) {
 }
 
 function findPath(grid, visited, currentY, currentX, shortestPath) {
-    console.log("findPath");
+    // console.log("findPath");
     let currentLengthPath = Object.keys(visited).length;
-    if(shortestPath[0]<=currentLengthPath){
-        console.log("abort");
+    if (shortestPath[0] <= currentLengthPath) {
         return;
-    } else if (grid[currentY][currentX] == 'E') 
-    {   shortestPath.pop();
+    } else if (grid[currentY][currentX] == 'E') {
+        shortestPath.pop();
         shortestPath.push(Object.keys(visited).length);
         return;
     } else {
