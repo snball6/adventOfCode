@@ -51,8 +51,6 @@ function getFirstLastPart2(inputRow) {
             break;
         }
     }
-    console.log(inputRow)
-    console.log(parseInt(first + last));
     return parseInt(first + last);
 }
 
