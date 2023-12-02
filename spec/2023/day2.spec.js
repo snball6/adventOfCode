@@ -4,23 +4,23 @@ describe("day2", () => {
 
         it("Should split games into objects - Sample", () => {
             var oneEachRound = 'Game 1: 3 blue; 6 blue; 2 green';
-            var expectedObject =    {
-                    'game': 1,
-                    'rounds': [
-                        {
-                            'blue': 3,
-                        },
-                        {
-                            'blue': 6
-                        },
-                        {
-                            'green': 2,
-                        }
-                    ]
-                }
-            
+            var expectedObject = {
+                'game': 1,
+                'rounds': [
+                    {
+                        'blue': 3,
+                    },
+                    {
+                        'blue': 6
+                    },
+                    {
+                        'green': 2,
+                    }
+                ]
+            }
+
             expect(parseGame(oneEachRound)).toEqual(expectedObject);
-            
+
             var game1Object = {
                 'game': 1,
                 'rounds': [
@@ -63,7 +63,49 @@ describe("day2", () => {
     });
 
     describe("Part 2", () => {
+        it("Should return fewest cubes needed games - Sample", () => {
+            expect(getFewestDict(parseGame(sample[0]))).toEqual({
+                'red': 4,
+                'green': 2,
+                'blue': 6
+            });
+            expect(getFewestDict(parseGame(sample[1]))).toEqual({
+                'red': 1,
+                'green': 3,
+                'blue': 4
+            });
+            expect(getFewestDict(parseGame(sample[2]))).toEqual({
+                'red': 20,
+                'green': 13,
+                'blue': 6
+            });
+            expect(getFewestDict(parseGame(sample[3]))).toEqual({
+                'red': 14,
+                'green': 3,
+                'blue': 15
+            });
+            expect(getFewestDict(parseGame(sample[4]))).toEqual({
+                'red': 6,
+                'green': 3,
+                'blue': 2
+            });
+        });
 
+        it("Should calculate power - Sample", () => {
+            expect(getPower(getFewestDict(parseGame(sample[0])))).toEqual(48);
+            expect(getPower(getFewestDict(parseGame(sample[1])))).toEqual(12);
+            expect(getPower(getFewestDict(parseGame(sample[2])))).toEqual(1560);
+            expect(getPower(getFewestDict(parseGame(sample[3])))).toEqual(630);
+            expect(getPower(getFewestDict(parseGame(sample[4])))).toEqual(36);
+        });
+
+        it("Should sum possible games - Sample", () => {
+            expect(sumPower(sample)).toBe(2286);
+        });
+
+        it("Should sum possible games - Actual", () => {
+            expect(sumPower(actual)).toBe(65371);
+        });
     });
 
     let sample = [

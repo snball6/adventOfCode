@@ -55,3 +55,34 @@ function sumPossible(input){
     }
     return sum;
 }
+
+function getFewestDict(gameObject){
+    let minimum = {
+        'red': 0,
+        'green': 0,
+        'blue': 0
+    };
+    for(i in gameObject.rounds){
+        for(const dictEntry in gameObject.rounds[i]){
+            let roundsNumber = gameObject.rounds[i][dictEntry];
+            let minimumSoFar = minimum[dictEntry];
+            if(roundsNumber > minimumSoFar){
+                minimum[dictEntry] = roundsNumber
+            }
+        }
+    }
+    return minimum;
+}
+
+function getPower(bag){
+    return bag['red'] * bag['green'] * bag['blue'];
+}
+
+function sumPower(input){
+    let sum = 0;
+    for(i in input){
+        let parsed = parseGame(input[i]);
+        sum += getPower(getFewestDict(parsed));
+    }
+    return sum;
+}
