@@ -54,7 +54,30 @@ describe("day3", () => {
     });
 
     describe("Part 2", () => {
-       
+        it("Should createMapForGears - Sample", () => {
+            let smallerSample = [
+               //0123456789 
+                '467..114..',
+                '...*......',
+                '..35..633.',
+                '......*...'
+            ]
+
+            let expectedMap ={
+                '1,3': [467,35],
+                '3,6': [633],
+            }
+
+            expect(getGearMap(smallerSample)).toEqual(expectedMap);
+        });
+
+        it("Should sumGearRatios - Sample", () => {
+            expect(sumGearRatios(sample)).toEqual(467835);
+        });
+
+        it("Should sumGearRatios - actual", () => {
+            expect(sumGearRatios(actual)).toEqual(84495585);
+        });
     });
 
     let sample = [
