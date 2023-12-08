@@ -59,11 +59,32 @@ function findDestination(source, maps) {
     return source;
 }
 
-function getlowestLocationNumber(input){
+function getlowestLocationNumber(input) {
     let almanac = parseAlmanac([...input]);
     let locations = [];
-    for(seed of almanac.seeds){
+    for (seed of almanac.seeds) {
         locations.push(getLocationNumber(seed, almanac));
     }
     return Math.min(...locations);
+}
+
+function getlowestLocationNumberPart2(input) {
+    let almanac = parseAlmanac([...input]);
+    //starting value
+    let min = getLocationNumber(almanac.seeds[0], almanac);
+
+    for (let i = 0; i < almanac.seeds.length; i += 2) {
+        let startSeedRange = almanac.seeds[i];
+        let endSeedRange = almanac.seeds[i] + almanac.seeds[i + 1];
+        for (let seedNum = startSeedRange; seedNum < endSeedRange; seedNum++) {
+            let loc = getLocationNumber(seedNum, almanac);
+            if (loc < min) {
+                console.log(min);
+                min = loc;
+            }
+        }
+        console.log("outer loop");
+    }
+
+    return min;
 }

@@ -52,7 +52,14 @@ describe("day5", () => {
     });
 
     describe("Part 2", () => {
+        it("Should get the lowest location number - Sample", () => {
+            expect(getlowestLocationNumberPart2([...sample])).toEqual(46);
+        });
 
+        //terribly terribly slow, but it works!
+        xit("Should get the lowest location number - Actual", () => {
+            expect(getlowestLocationNumberPart2([...actual])).toEqual(60294664);
+        });
     });
 
     let sample = [
