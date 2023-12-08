@@ -174,9 +174,7 @@ function sumGearRatios(input) {
     let sum = 0;
 
     for (const gear in gearMap) {
-        console.log(`${gear}: ${gearMap[gear]}`);
         if (gearMap[gear].length == 2) {
-            console.log("Adding: " + gearMap[gear][0] + "*" + gearMap[gear][1]);
             sum += gearMap[gear][0] * gearMap[gear][1];
         }
     }
