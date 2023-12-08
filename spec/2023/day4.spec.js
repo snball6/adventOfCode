@@ -1,4 +1,4 @@
-describe("day3", () => {
+describe("day4", () => {
 
     describe("Part 1", () => {
         it("Should calculate score - Sample", () => {
