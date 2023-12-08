@@ -19,7 +19,13 @@ describe("day3", () => {
     });
 
     describe("Part 2", () => {
+        it("Should tally up scratchcards", () => {
+            expect(tallyScratchCards(sample)).toEqual(30);
+        });
 
+        it("Should tally up scratchcards", () => {
+            expect(tallyScratchCards(actual)).toEqual(7013204);
+        });
     });
 
     let sample = {
