@@ -57,7 +57,7 @@ describe("day5", () => {
         });
 
         //terribly terribly slow, but it works!
-        xit("Should get the lowest location number - Actual", () => {
+        xit("Skip because slow - Should get the lowest location number - Actual", () => {
             expect(getlowestLocationNumberPart2([...actual])).toEqual(60294664);
         });
     });

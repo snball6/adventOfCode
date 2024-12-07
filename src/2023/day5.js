@@ -79,11 +79,11 @@ function getlowestLocationNumberPart2(input) {
         for (let seedNum = startSeedRange; seedNum < endSeedRange; seedNum++) {
             let loc = getLocationNumber(seedNum, almanac);
             if (loc < min) {
-                console.log(min);
+                // console.log(min);
                 min = loc;
             }
         }
-        console.log("outer loop");
+        // console.log("outer loop");
     }
 
     return min;
